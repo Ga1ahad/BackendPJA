@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Clothesy.ApiApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Clothesy.Persistence;
+using Clothesy.Domain.Entities;
 
 namespace Clothesy.Api.Controllers
 {

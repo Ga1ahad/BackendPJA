@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Clothesy.ApiApp.Models
+namespace Clothesy.Domain.Entities
 {
     public partial class ClothingSuitcase
     {

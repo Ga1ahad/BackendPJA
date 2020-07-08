@@ -1,8 +1,9 @@
 ﻿using System;
+using Clothesy.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Clothesy.ApiApp.Models
+namespace Clothesy.Persistence
 {
     public partial class s15264Context : DbContext
     {
