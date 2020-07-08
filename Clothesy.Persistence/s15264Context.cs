@@ -1,11 +1,12 @@
 ﻿using System;
+using Clothesy.Application.Persistence;
 using Clothesy.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Clothesy.Persistence
 {
-    public partial class s15264Context : DbContext
+    public partial class s15264Context : DbContext, IClothesyDb
     {
         public s15264Context()
         {
@@ -33,7 +34,6 @@ namespace Clothesy.Persistence
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15264;Integrated Security=True");
             }
         }

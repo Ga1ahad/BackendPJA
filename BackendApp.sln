@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothesy.Persistence", "Clo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothesy.Domain", "Clothesy.Domain\Clothesy.Domain.csproj", "{39AD2E3D-6E98-4C01-B9C6-B80296464071}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothesy.Application", "Clothesy.Application\Clothesy.Application.csproj", "{4910C047-3C93-4BEA-8178-C5162E032341}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{39AD2E3D-6E98-4C01-B9C6-B80296464071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39AD2E3D-6E98-4C01-B9C6-B80296464071}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39AD2E3D-6E98-4C01-B9C6-B80296464071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4910C047-3C93-4BEA-8178-C5162E032341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4910C047-3C93-4BEA-8178-C5162E032341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4910C047-3C93-4BEA-8178-C5162E032341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4910C047-3C93-4BEA-8178-C5162E032341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{153B4C3E-A6E1-4F82-8B8B-4DA75D8431E2} = {8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}
 		{737FFD31-99CA-4844-8CB3-ECCE7767D896} = {000C2BAD-3C8A-4367-9DE9-2D620505D90C}
 		{39AD2E3D-6E98-4C01-B9C6-B80296464071} = {4E3FEFDB-953F-4E86-A362-1C7A186C479A}
+		{4910C047-3C93-4BEA-8178-C5162E032341} = {4E3FEFDB-953F-4E86-A362-1C7A186C479A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C60893F0-7B89-428C-838F-B216223414F4}
