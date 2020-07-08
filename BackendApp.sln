@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Api", "BackendApp\Clothesy.Api.csproj", "{EC09A8C1-F7D3-4173-A70F-149EF65D8345}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C177F9FE-6B1B-4689-BAEC-1A0AC7C36B9B}"
+	ProjectSection(SolutionItems) = preProject
+		db-diagram-2020-06-10_21 31.png = db-diagram-2020-06-10_21 31.png
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}"
 EndProject
