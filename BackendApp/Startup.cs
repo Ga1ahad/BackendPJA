@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Clothesy.Persistence;
+using Clothesy.Application.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Clothesy.ApiApp
 {
@@ -42,9 +44,11 @@ namespace Clothesy.ApiApp
                         };
                     });
 
-
-
-            services.AddDbContext<s15264Context>();
+            services.AddScoped<IClothesyDb, s15264Context>();
+            services.AddDbContext<s15264Context>(opt =>
+            {
+                opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15264;Integrated Security=True");
+            });
             services.AddControllers().AddXmlSerializerFormatters();
         }
 

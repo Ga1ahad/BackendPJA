@@ -30,14 +30,6 @@ namespace Clothesy.Persistence
         public virtual DbSet<Trip> Trip { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15264;Integrated Security=True");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BodyPart>(entity =>
