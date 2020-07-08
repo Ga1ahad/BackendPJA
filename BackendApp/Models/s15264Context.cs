@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BackendApp.Models
+namespace Clothesy.ApiApp.Models
 {
     public partial class s15264Context : DbContext
     {

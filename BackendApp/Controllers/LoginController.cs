@@ -5,12 +5,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using BackendApp.DTOs;
+using Clothesy.ApiApp.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace BackendApp.Controllers
+namespace Clothesy.ApiApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

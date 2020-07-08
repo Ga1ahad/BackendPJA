@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BackendApp.Models;
+using Clothesy.ApiApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Controllers
+namespace Clothesy.Api.Controllers
 {
 
     [Route("api/users/{IdUser:int}/[controller]")]

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace BackendApp.Controllers
+namespace Clothesy.ApiApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]

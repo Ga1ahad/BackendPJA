@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BackendApp.DTOs
+namespace Clothesy.ApiApp.DTOs
 {
     public class LoginRequestDto
     {

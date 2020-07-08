@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendApp", "BackendApp\BackendApp.csproj", "{EC09A8C1-F7D3-4173-A70F-149EF65D8345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Api", "BackendApp\Clothesy.Api.csproj", "{EC09A8C1-F7D3-4173-A70F-149EF65D8345}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C177F9FE-6B1B-4689-BAEC-1A0AC7C36B9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{4E3FEFDB-953F-4E86-A362-1C7A186C479A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastructure", "{000C2BAD-3C8A-4367-9DE9-2D620505D90C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentation", "{153B4C3E-A6E1-4F82-8B8B-4DA75D8431E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +28,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC09A8C1-F7D3-4173-A70F-149EF65D8345} = {153B4C3E-A6E1-4F82-8B8B-4DA75D8431E2}
+		{4E3FEFDB-953F-4E86-A362-1C7A186C479A} = {8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}
+		{000C2BAD-3C8A-4367-9DE9-2D620505D90C} = {8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}
+		{153B4C3E-A6E1-4F82-8B8B-4DA75D8431E2} = {8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C60893F0-7B89-428C-838F-B216223414F4}

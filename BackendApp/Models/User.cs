@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BackendApp.Models
+namespace Clothesy.ApiApp.Models
 {
     public partial class User
     {

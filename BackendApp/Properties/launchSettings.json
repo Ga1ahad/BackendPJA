@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BackendApp": {
+    "Clothesy.ApiApp": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

@@ -1,6 +1,6 @@
 using System;
 
-namespace BackendApp
+namespace Clothesy.ApiApp
 {
     public class WeatherForecast
     {
