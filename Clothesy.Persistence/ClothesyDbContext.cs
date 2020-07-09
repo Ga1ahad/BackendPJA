@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Clothesy.Persistence
 {
-    public partial class s15264Context : DbContext, IClothesyDb
+    public partial class ClothesyDbContext : DbContext, IClothesyDb
     {
-        public s15264Context()
+        public ClothesyDbContext()
         {
         }
 
-        public s15264Context(DbContextOptions<s15264Context> options)
+        public ClothesyDbContext(DbContextOptions<ClothesyDbContext> options)
             : base(options)
         {
         }

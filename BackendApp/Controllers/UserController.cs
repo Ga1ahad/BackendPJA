@@ -15,9 +15,9 @@ namespace Clothesy.ApiApp.Controllers
     {
         public IConfiguration Configuration { get; set; }
 
-        private readonly s15264Context _context;
+        private readonly ClothesyDbContext _context;
 
-        public UserController(IConfiguration configuration, s15264Context context)
+        public UserController(IConfiguration configuration, ClothesyDbContext context)
         {
             Configuration = configuration;
             _context = context;

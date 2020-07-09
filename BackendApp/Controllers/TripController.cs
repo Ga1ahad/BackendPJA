@@ -14,9 +14,9 @@ namespace Clothesy.Api.Controllers
     [ApiController]
     public class TripController : Controller
     {
-        private readonly s15264Context _context;
+        private readonly ClothesyDbContext _context;
 
-        public TripController(s15264Context context)
+        public TripController(ClothesyDbContext context)
         {
             _context = context;
         }

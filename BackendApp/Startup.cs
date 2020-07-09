@@ -45,8 +45,8 @@ namespace Clothesy.ApiApp
                         };
                     });
 
-            services.AddScoped<IClothesyDb, s15264Context>();
-            services.AddDbContext<s15264Context>(opt =>
+            services.AddScoped<IClothesyDb, ClothesyDbContext>();
+            services.AddDbContext<ClothesyDbContext>(opt =>
             {
                 opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15264;Integrated Security=True");
             });

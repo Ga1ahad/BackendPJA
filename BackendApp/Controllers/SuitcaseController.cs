@@ -14,9 +14,9 @@ namespace Clothesy.Api.Controllers
     [ApiController]
     public class SuitcaseController : Controller
     {
-        private readonly s15264Context _context;
+        private readonly ClothesyDbContext _context;
 
-        public SuitcaseController(s15264Context context)
+        public SuitcaseController(ClothesyDbContext context)
         {
             _context = context;
         }

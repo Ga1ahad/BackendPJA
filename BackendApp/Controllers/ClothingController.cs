@@ -15,17 +15,17 @@ namespace Clothesy.Api.Controllers
     [ApiController]
     public class ClothingController : Controller
     {
-        private readonly s15264Context _context;
+        private readonly ClothesyDbContext _context;
 
-        public ClothingController(s15264Context context)
+        public ClothingController(ClothesyDbContext context)
         {
             _context = context;
         }
         [HttpGet]
-        public IActionResult GetClothings(int IdUser)
+        public IActionResult GetClothings(int idUser)
         {
             var clothings = from Clothing in _context.Clothing
-                            where IdUser.Equals(Clothing.IdUser)
+                            where idUser.Equals(Clothing.IdUser)
                             select Clothing;
 
             return Ok(clothings);
