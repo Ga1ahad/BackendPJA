@@ -21,14 +21,12 @@ namespace Clothesy.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetClothesSuitcase(int IdUser, int IdSuitcase)
+        public IActionResult GetClothesSuitcase(int idUser, int idSuitcase)
         {
-
-
             var clothes = from c in _context.Clothing
                           join cs in _context.ClothingSuitcase
                           on c.IdClothing equals cs.IdClothing
-                          where cs.IdSuitcase == IdSuitcase && c.IdUser == IdUser
+                          where cs.IdSuitcase == idUser && c.IdUser == idSuitcase
                           select c;
 
             if (clothes == null)

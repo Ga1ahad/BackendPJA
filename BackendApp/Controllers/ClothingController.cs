@@ -24,8 +24,6 @@ namespace Clothesy.Api.Controllers
         [HttpGet]
         public IActionResult GetClothings(int IdUser)
         {
-
-
             var clothings = from Clothing in _context.Clothing
                             where IdUser.Equals(Clothing.IdUser)
                             select Clothing;
