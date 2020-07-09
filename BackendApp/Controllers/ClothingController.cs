@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using Clothesy.Persistence;
 using Clothesy.Domain.Entities;
-using MediatR;
 using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
 using Clothesy.Application.Persistence;
 
 namespace Clothesy.Api.Controllers
 {
 
-    [Route("api/users/{IdUser:int}/[controller]")]
+    [Route("api/users/{idUser:int}")]
     [ApiController]
     public class ClothingController : BaseController
     {
@@ -23,18 +19,17 @@ namespace Clothesy.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetClothings(int idUser)
+        public async Task<IActionResult> GetClothings(int idUser)
         {
-            //var clothings = await Mediator.Send(new GetClothesFromSuitcase
-            //{
-            //    IdUser = idUser
-            //});
-            //return Ok(clothings);
-            return Ok("Anna");
+            var clothings = await Mediator.Send(new GetClothesFromSuitcase
+            {
+                IdUser = idUser
+            });
+            return Ok(clothings);
         }
 
         [HttpGet("{IdClothing:int}")]
-        public IActionResult GetClothings(int IdUser, int id)
+        public IActionResult GetClothings(int idUser, int id)
         {
 
             var cloth = Context.Clothing.FirstOrDefault(c => c.IdClothing == id);
@@ -69,8 +64,6 @@ namespace Clothesy.Api.Controllers
 
             return Ok(updatedClothing);
         }
-
-
 
         [HttpDelete("{IdClothing:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

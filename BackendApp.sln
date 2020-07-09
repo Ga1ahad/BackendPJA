@@ -7,7 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Api", "BackendApp\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{C177F9FE-6B1B-4689-BAEC-1A0AC7C36B9B}"
 	ProjectSection(SolutionItems) = preProject
-		db-diagram-2020-06-10_21 31.png = db-diagram-2020-06-10_21 31.png
+		docs\db-diagram-2020-06-10_21 31.png = docs\db-diagram-2020-06-10_21 31.png
+		docs\ProjektEkranow.xd = docs\ProjektEkranow.xd
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8AFCCE7D-B00F-47AF-BC38-9524A507B6EE}"
@@ -23,6 +24,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Domain", "Clothesy.Domain\Clothesy.Domain.csproj", "{39AD2E3D-6E98-4C01-B9C6-B80296464071}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Application", "Clothesy.Application\Clothesy.Application.csproj", "{4910C047-3C93-4BEA-8178-C5162E032341}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7D6507D4-29BB-413E-873C-7D98970125A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
