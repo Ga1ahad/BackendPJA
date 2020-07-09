@@ -7,35 +7,37 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Clothesy.Persistence;
 using Clothesy.Domain.Entities;
+using MediatR;
+using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
+using Clothesy.Application.Persistence;
 
 namespace Clothesy.Api.Controllers
 {
 
     [Route("api/users/{IdUser:int}/[controller]")]
     [ApiController]
-    public class ClothingController : Controller
+    public class ClothingController : BaseController
     {
-        private readonly ClothesyDbContext _context;
-
-        public ClothingController(ClothesyDbContext context)
+        public ClothingController(IClothesyDb context) : base(context)
         {
-            _context = context;
         }
+
         [HttpGet]
         public IActionResult GetClothings(int idUser)
         {
-            var clothings = from Clothing in _context.Clothing
-                            where idUser.Equals(Clothing.IdUser)
-                            select Clothing;
-
-            return Ok(clothings);
+            //var clothings = await Mediator.Send(new GetClothesFromSuitcase
+            //{
+            //    IdUser = idUser
+            //});
+            //return Ok(clothings);
+            return Ok("Anna");
         }
 
         [HttpGet("{IdClothing:int}")]
         public IActionResult GetClothings(int IdUser, int id)
         {
 
-            var cloth = _context.Clothing.FirstOrDefault(c => c.IdClothing == id);
+            var cloth = Context.Clothing.FirstOrDefault(c => c.IdClothing == id);
             if (cloth == null)
             {
                 return NotFound();
@@ -48,8 +50,8 @@ namespace Clothesy.Api.Controllers
         [ProducesDefaultResponseType]
         public IActionResult CreateClothings(Clothing clothing)
         {
-            _context.Clothing.Add(clothing);
-            _context.SaveChanges();
+            Context.Clothing.Add(clothing);
+            Context.SaveChanges();
             return StatusCode(201, clothing);
         }
 
@@ -57,13 +59,13 @@ namespace Clothesy.Api.Controllers
         public IActionResult Update(int IdClothing, Clothing updatedClothing)
         {
 
-            if (_context.Clothing.Count(c => c.IdClothing == IdClothing) == 0)
+            if (Context.Clothing.Count(c => c.IdClothing == IdClothing) == 0)
             {
                 return NotFound();
             }
-            _context.Clothing.Attach(updatedClothing);
-            _context.Entry(updatedClothing).State = EntityState.Modified;
-            _context.SaveChanges();
+            Context.Clothing.Attach(updatedClothing);
+            Context.Entry(updatedClothing).State = EntityState.Modified;
+            Context.SaveChanges();
 
             return Ok(updatedClothing);
         }
@@ -76,13 +78,13 @@ namespace Clothesy.Api.Controllers
         [ProducesDefaultResponseType]
         public IActionResult Delete(int id)
         {
-            var cloth = _context.Clothing.FirstOrDefault(c => c.IdClothing == id);
+            var cloth = Context.Clothing.FirstOrDefault(c => c.IdClothing == id);
             if (cloth == null)
             {
                 return NotFound();
             }
-            _context.Clothing.Remove(cloth);
-            _context.SaveChanges();
+            Context.Clothing.Remove(cloth);
+            Context.SaveChanges();
 
             return Ok(cloth);
         }

@@ -1,5 +1,8 @@
 ﻿using Clothesy.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Clothesy.Application.Persistence
 {
@@ -17,5 +20,9 @@ namespace Clothesy.Application.Persistence
         public DbSet<Tags> Tags { get; set; }
         public DbSet<Trip> Trip { get; set; }
         public DbSet<User> User { get; set; }
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        int SaveChanges();
+        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }
 }

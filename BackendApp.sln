@@ -18,11 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructure", "infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "presentation", "presentation", "{153B4C3E-A6E1-4F82-8B8B-4DA75D8431E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothesy.Persistence", "Clothesy.Persistence\Clothesy.Persistence.csproj", "{737FFD31-99CA-4844-8CB3-ECCE7767D896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Persistence", "Clothesy.Persistence\Clothesy.Persistence.csproj", "{737FFD31-99CA-4844-8CB3-ECCE7767D896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothesy.Domain", "Clothesy.Domain\Clothesy.Domain.csproj", "{39AD2E3D-6E98-4C01-B9C6-B80296464071}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Domain", "Clothesy.Domain\Clothesy.Domain.csproj", "{39AD2E3D-6E98-4C01-B9C6-B80296464071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothesy.Application", "Clothesy.Application\Clothesy.Application.csproj", "{4910C047-3C93-4BEA-8178-C5162E032341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothesy.Application", "Clothesy.Application\Clothesy.Application.csproj", "{4910C047-3C93-4BEA-8178-C5162E032341}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
