@@ -37,7 +37,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdBodyPart)
                     .HasName("BodyPart_pk");
 
-                entity.Property(e => e.IdBodyPart).ValueGeneratedNever();
+                entity.Property(e => e.IdBodyPart).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -50,7 +50,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdClothing)
                     .HasName("Clothing_pk");
 
-                entity.Property(e => e.IdClothing).ValueGeneratedNever();
+                entity.Property(e => e.IdClothing).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CreatedAt).HasColumnType("date");
 
@@ -111,7 +111,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdClothingPicture)
                     .HasName("ClothingPicture_pk");
 
-                entity.Property(e => e.IdClothingPicture).ValueGeneratedNever();
+                entity.Property(e => e.IdClothingPicture).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ClothImg).HasColumnType("image");
 
@@ -172,7 +172,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdClothingType)
                     .HasName("ClothingType_pk");
 
-                entity.Property(e => e.IdClothingType).ValueGeneratedNever();
+                entity.Property(e => e.IdClothingType).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -185,7 +185,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdColor)
                     .HasName("Color_pk");
 
-                entity.Property(e => e.IdColor).ValueGeneratedNever();
+                entity.Property(e => e.IdColor).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ColorName)
                     .IsRequired()
@@ -198,7 +198,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdSuitcase)
                     .HasName("Suitcase_pk");
 
-                entity.Property(e => e.IdSuitcase).ValueGeneratedNever();
+                entity.Property(e => e.IdSuitcase).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -211,11 +211,6 @@ namespace Clothesy.Persistence
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Suitcase_Trip");
 
-                entity.HasOne(d => d.IdUserNavigation)
-                    .WithMany(p => p.Suitcase)
-                    .HasForeignKey(d => d.IdUser)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Suitcase_User");
             });
 
             modelBuilder.Entity<Tags>(entity =>
@@ -223,7 +218,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdTag)
                     .HasName("Tags_pk");
 
-                entity.Property(e => e.IdTag).ValueGeneratedNever();
+                entity.Property(e => e.IdTag).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.TagName)
                     .IsRequired()
@@ -236,7 +231,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdTrip)
                     .HasName("Trip_pk");
 
-                entity.Property(e => e.IdTrip).ValueGeneratedNever();
+                entity.Property(e => e.IdTrip).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.City)
                     .IsRequired()
@@ -256,6 +251,12 @@ namespace Clothesy.Persistence
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.Trip)
+                    .HasForeignKey(d => d.IdUser)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Suitcase_User");
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -263,7 +264,7 @@ namespace Clothesy.Persistence
                 entity.HasKey(e => e.IdUser)
                     .HasName("User_pk");
 
-                entity.Property(e => e.IdUser).ValueGeneratedNever();
+                entity.Property(e => e.IdUser).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CreatedAt).HasColumnType("date");
 

@@ -8,7 +8,7 @@ namespace Clothesy.Domain.Entities
         public User()
         {
             Clothing = new HashSet<Clothing>();
-            Suitcase = new HashSet<Suitcase>();
+            Trip = new HashSet<Trip>();
         }
 
         public int IdUser { get; set; }
@@ -22,6 +22,6 @@ namespace Clothesy.Domain.Entities
         public DateTime LastLogin { get; set; }
 
         public virtual ICollection<Clothing> Clothing { get; set; }
-        public virtual ICollection<Suitcase> Suitcase { get; set; }
+        public virtual ICollection<Trip> Trip { get; set; }
     }
 }

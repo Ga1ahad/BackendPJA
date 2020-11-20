@@ -12,11 +12,9 @@ namespace Clothesy.Domain.Entities
 
         public int IdSuitcase { get; set; }
         public string Name { get; set; }
-        public int IdUser { get; set; }
         public int IdTrip { get; set; }
 
         public virtual Trip IdTripNavigation { get; set; }
-        public virtual User IdUserNavigation { get; set; }
         public virtual ICollection<ClothingSuitcase> ClothingSuitcase { get; set; }
     }
 }

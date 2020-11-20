@@ -11,7 +11,7 @@ namespace Clothesy.Domain.Entities
         {
             Suitcase = new HashSet<Suitcase>();
         }
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int IdTrip { get; set; }
         public string TripName { get; set; }
         public DateTime StartTrip { get; set; }
@@ -19,6 +19,8 @@ namespace Clothesy.Domain.Entities
         public string Country { get; set; }
         public string City { get; set; }
         public int ZipCode { get; set; }
+        public int IdUser { get; set; }
+        public virtual User IdUserNavigation { get; set; }
 
         public virtual ICollection<Suitcase> Suitcase { get; set; }
     }

@@ -25,17 +25,17 @@ namespace Clothesy.Api.Controllers
         {
 
 
-            var suitcases = from Suitcase in _context.Suitcase
-                            where IdUser.Equals(Suitcase.IdUser)
-                            select Suitcase;
+        //    var suitcases = from Suitcase in _context.Suitcase
+            //                where IdUser.Equals(Suitcase.IdUser)
+          //                  select Suitcase;
+                
+         //   var suitcases2 = from s in _context.Suitcase
+           //                  join t in _context.Trip
+          //                   on s.IdTrip equals t.IdTrip
+             //                where IdUser.Equals(s.IdUser)
+             //                select new { s, t.IdTrip, t.TripName, t.StartTrip, t.EndTrip, t.Country, t.City, t.ZipCode };
 
-            var suitcases2 = from s in _context.Suitcase
-                             join t in _context.Trip
-                             on s.IdTrip equals t.IdTrip
-                             where IdUser.Equals(s.IdUser)
-                             select new { s, t.IdTrip, t.TripName, t.StartTrip, t.EndTrip, t.Country, t.City, t.ZipCode };
-
-            return Ok(suitcases2);
+            return Ok(null);
         }
 
 

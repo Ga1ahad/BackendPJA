@@ -28,9 +28,7 @@ namespace Clothesy.Api.Controllers
 
 
             var trips = from t in _context.Trip
-                        join s in _context.Suitcase
-                        on t.IdTrip equals s.IdTrip
-                        where s.IdUser == IdUser
+                        where t.IdUser == IdUser
                         select t;
 
 
@@ -52,6 +50,7 @@ namespace Clothesy.Api.Controllers
         [HttpPost]
         public IActionResult CreateTrip(Trip trip)
         {
+            trip.IdUser = 1;
             _context.Trip.Add(trip);
             _context.SaveChanges();
             return StatusCode(201, trip);
