@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ namespace Clothesy.Api.Controllers
 {
 
     [Route("api/users/{IdUser:int}/[controller]")]
+    [Authorize]
     [ApiController]
     public class TripController : Controller
     {
@@ -20,7 +22,6 @@ namespace Clothesy.Api.Controllers
         {
             _context = context;
         }
-
 
         [HttpGet]
         public IActionResult GetTrips(int IdUser)

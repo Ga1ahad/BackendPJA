@@ -11,6 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Clothesy.ApiApp.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
         public IConfiguration Configuration { get; set; }
@@ -26,7 +28,6 @@ namespace Clothesy.ApiApp.Controllers
         [HttpPost]
         public IActionResult Login(LoginRequestDto request)
         {
-
             var claims = new[]
             {
             new Claim(ClaimTypes.NameIdentifier, "1"),
@@ -52,14 +53,6 @@ namespace Clothesy.ApiApp.Controllers
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 refreshToken = Guid.NewGuid()
             });
-        }
-
-        [HttpPost]
-        public IActionResult CreateUser(User user)
-        {
-            _context.User.Add(user);
-            _context.SaveChanges();
-            return StatusCode(201, user);
         }
     }
 }
