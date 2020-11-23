@@ -11,8 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Clothesy.Api.Controllers
 {
 
-    [Route("api/users/{IdUser:int}/[controller]")]
-    [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class TripController : Controller
     {
@@ -25,11 +24,9 @@ namespace Clothesy.Api.Controllers
 
         [HttpGet]
         public IActionResult GetTrips(int IdUser)
-        {
-
-
+        {   
             var trips = from t in _context.Trip
-                        where t.IdUser == IdUser
+                        where t.IdUser == 1
                         select t;
 
 
