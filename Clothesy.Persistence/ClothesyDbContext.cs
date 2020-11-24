@@ -1,8 +1,6 @@
-﻿using System;
-using Clothesy.Application.Persistence;
+﻿using Clothesy.Application.Persistence;
 using Clothesy.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Clothesy.Persistence
 {

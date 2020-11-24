@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
+using Clothesy.Application.Persistence;
+using Clothesy.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using Clothesy.Domain.Entities;
-using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
-using Clothesy.Application.Persistence;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Clothesy.Api.Controllers
 {

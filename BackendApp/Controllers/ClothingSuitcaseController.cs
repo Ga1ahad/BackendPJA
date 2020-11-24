@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Clothesy.Domain.Entities;
+﻿using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Clothesy.Api.Controllers
 {

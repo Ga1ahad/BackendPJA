@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Clothesy.Domain.Entities;
+﻿using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Clothesy.Api.Controllers
 {
@@ -25,15 +22,15 @@ namespace Clothesy.Api.Controllers
         {
 
 
-        //    var suitcases = from Suitcase in _context.Suitcase
+            //    var suitcases = from Suitcase in _context.Suitcase
             //                where IdUser.Equals(Suitcase.IdUser)
-          //                  select Suitcase;
-                
-         //   var suitcases2 = from s in _context.Suitcase
-           //                  join t in _context.Trip
-          //                   on s.IdTrip equals t.IdTrip
-             //                where IdUser.Equals(s.IdUser)
-             //                select new { s, t.IdTrip, t.TripName, t.StartTrip, t.EndTrip, t.Country, t.City, t.ZipCode };
+            //                  select Suitcase;
+
+            //   var suitcases2 = from s in _context.Suitcase
+            //                  join t in _context.Trip
+            //                   on s.IdTrip equals t.IdTrip
+            //                where IdUser.Equals(s.IdUser)
+            //                select new { s, t.IdTrip, t.TripName, t.StartTrip, t.EndTrip, t.Country, t.City, t.ZipCode };
 
             return Ok(null);
         }

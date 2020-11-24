@@ -1,11 +1,11 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using Clothesy.Application.Persistence;
 using Clothesy.Domain.Entities;
-using System.Threading.Tasks;
-using System.Threading;
-using Clothesy.Application.Persistence;
-using System.Linq;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase
 {

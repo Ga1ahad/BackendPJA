@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Clothesy.Domain.Entities;
+﻿using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Clothesy.Api.Controllers
 {
@@ -24,7 +21,7 @@ namespace Clothesy.Api.Controllers
 
         [HttpGet]
         public IActionResult GetTrips(int IdUser)
-        {   
+        {
             var trips = from t in _context.Trip
                         where t.IdUser == 1
                         select t;

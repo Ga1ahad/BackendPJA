@@ -1,13 +1,12 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Clothesy.ApiApp.DTOs;
-using Clothesy.Domain.Entities;
+﻿using Clothesy.ApiApp.DTOs;
 using Clothesy.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Clothesy.ApiApp.Controllers
 {

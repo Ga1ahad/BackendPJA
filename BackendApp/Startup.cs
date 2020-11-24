@@ -1,22 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Clothesy.Application.Persistence;
+using Clothesy.Persistence;
+using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Clothesy.Persistence;
-using Clothesy.Application.Persistence;
-using Microsoft.EntityFrameworkCore;
-using MediatR;
-using Microsoft.AspNetCore.Authentication;
 
 namespace Clothesy.ApiApp
 {
@@ -35,7 +28,7 @@ namespace Clothesy.ApiApp
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
-                        options.TokenValidationParameters = new TokenValidationParameters 
+                        options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,
                             ValidateAudience = true,
