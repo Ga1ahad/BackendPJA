@@ -7,7 +7,7 @@ using System.Linq;
 namespace Clothesy.Api.Controllers
 {
 
-    [Route("api/users/{IdUser:int}/suitcases/{IdSuitcase:int}")]
+    [Route("api/users/{idUser:int}/suitcases/{idSuitcase:int}")]
     [ApiController]
     public class ClothingSuitcaseController : Controller
     {
@@ -23,8 +23,8 @@ namespace Clothesy.Api.Controllers
         {
             var clothes = from c in _context.Clothing
                           join cs in _context.ClothingSuitcase
-                          on c.IdClothing equals cs.IdClothing
-                          where cs.IdSuitcase == idUser && c.IdUser == idSuitcase
+                          on c.idClothing equals cs.idClothing
+                          where cs.idSuitcase == idUser && c.idUser == idSuitcase
                           select c;
 
             if (clothes == null)

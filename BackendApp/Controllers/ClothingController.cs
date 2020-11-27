@@ -23,16 +23,16 @@ namespace Clothesy.Api.Controllers
         {
             var clothings = await Mediator.Send(new GetClothesFromSuitcase
             {
-                IdUser = idUser
+                idUser = idUser
             });
             return Ok(clothings);
         }
 
-        [HttpGet("{IdClothing:int}")]
+        [HttpGet("{idClothing:int}")]
         public IActionResult GetClothings(int idUser, int id)
         {
 
-            var cloth = Context.Clothing.FirstOrDefault(c => c.IdClothing == id);
+            var cloth = Context.Clothing.FirstOrDefault(c => c.idClothing == id);
             if (cloth == null)
             {
                 return NotFound();
@@ -50,11 +50,11 @@ namespace Clothesy.Api.Controllers
             return StatusCode(201, clothing);
         }
 
-        [HttpPut("{IdClothing:int}")]
-        public IActionResult Update(int IdClothing, Clothing updatedClothing)
+        [HttpPut("{idClothing:int}")]
+        public IActionResult Update(int idClothing, Clothing updatedClothing)
         {
 
-            if (Context.Clothing.Count(c => c.IdClothing == IdClothing) == 0)
+            if (Context.Clothing.Count(c => c.idClothing == idClothing) == 0)
             {
                 return NotFound();
             }
@@ -65,13 +65,13 @@ namespace Clothesy.Api.Controllers
             return Ok(updatedClothing);
         }
 
-        [HttpDelete("{IdClothing:int}")]
+        [HttpDelete("{idClothing:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
         public IActionResult Delete(int id)
         {
-            var cloth = Context.Clothing.FirstOrDefault(c => c.IdClothing == id);
+            var cloth = Context.Clothing.FirstOrDefault(c => c.idClothing == id);
             if (cloth == null)
             {
                 return NotFound();

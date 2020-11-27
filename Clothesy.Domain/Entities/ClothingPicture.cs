@@ -2,11 +2,11 @@
 {
     public partial class ClothingPicture
     {
-        public int IdClothingPicture { get; set; }
+        public int idClothingPicture { get; set; }
         public string Title { get; set; }
-        public byte[] ClothImg { get; set; }
-        public int IdClothin { get; set; }
+        public string ClothingUrl { get; set; }
+        public int idClothin { get; set; }
 
-        public virtual Clothing IdClothinNavigation { get; set; }
+        public virtual Clothing idClothinNavigation { get; set; }
     }
 }

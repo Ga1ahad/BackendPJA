@@ -32,10 +32,10 @@ namespace Clothesy.Persistence
         {
             modelBuilder.Entity<BodyPart>(entity =>
             {
-                entity.HasKey(e => e.IdBodyPart)
+                entity.HasKey(e => e.idBodyPart)
                     .HasName("BodyPart_pk");
 
-                entity.Property(e => e.IdBodyPart).ValueGeneratedOnAdd();
+                entity.Property(e => e.idBodyPart).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -45,10 +45,10 @@ namespace Clothesy.Persistence
 
             modelBuilder.Entity<Clothing>(entity =>
             {
-                entity.HasKey(e => e.IdClothing)
+                entity.HasKey(e => e.idClothing)
                     .HasName("Clothing_pk");
 
-                entity.Property(e => e.IdClothing).ValueGeneratedOnAdd();
+                entity.Property(e => e.idClothing).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CreatedAt).HasColumnType("date");
 
@@ -61,21 +61,21 @@ namespace Clothesy.Persistence
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdBodyPartNavigation)
+                entity.HasOne(d => d.idBodyPartNavigation)
                     .WithMany(p => p.Clothing)
-                    .HasForeignKey(d => d.IdBodyPart)
+                    .HasForeignKey(d => d.idBodyPart)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_BodyPart");
 
-                entity.HasOne(d => d.IdClothingTypeNavigation)
+                entity.HasOne(d => d.idClothingTypeNavigation)
                     .WithMany(p => p.Clothing)
-                    .HasForeignKey(d => d.IdClothingType)
+                    .HasForeignKey(d => d.idClothingType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_ClothingType");
 
-                entity.HasOne(d => d.IdUserNavigation)
+                entity.HasOne(d => d.idUserNavigation)
                     .WithMany(p => p.Clothing)
-                    .HasForeignKey(d => d.IdUser)
+                    .HasForeignKey(d => d.idUser)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_User");
             });
@@ -87,9 +87,9 @@ namespace Clothesy.Persistence
 
                 entity.ToTable("Clothing_Color");
 
-                entity.Property(e => e.ClothingIdClothing).HasColumnName("Clothing_IdClothing");
+                entity.Property(e => e.ClothingIdClothing).HasColumnName("Clothing_idClothing");
 
-                entity.Property(e => e.ColorIdColor).HasColumnName("Color_IdColor");
+                entity.Property(e => e.ColorIdColor).HasColumnName("Color_idColor");
 
                 entity.HasOne(d => d.ClothingIdClothingNavigation)
                     .WithMany(p => p.ClothingColor)
@@ -106,71 +106,71 @@ namespace Clothesy.Persistence
 
             modelBuilder.Entity<ClothingPicture>(entity =>
             {
-                entity.HasKey(e => e.IdClothingPicture)
+                entity.HasKey(e => e.idClothingPicture)
                     .HasName("ClothingPicture_pk");
 
-                entity.Property(e => e.IdClothingPicture).ValueGeneratedOnAdd();
+                entity.Property(e => e.idClothingPicture).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.ClothImg).HasColumnType("image");
+                entity.Property(e => e.ClothingUrl).HasColumnType("text");
 
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdClothinNavigation)
+                entity.HasOne(d => d.idClothinNavigation)
                     .WithMany(p => p.ClothingPicture)
-                    .HasForeignKey(d => d.IdClothin)
+                    .HasForeignKey(d => d.idClothin)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Picture_Clothing");
             });
 
             modelBuilder.Entity<ClothingSuitcase>(entity =>
             {
-                entity.HasKey(e => new { e.IdSuitcase, e.IdClothing })
+                entity.HasKey(e => new { e.idSuitcase, e.idClothing })
                     .HasName("Clothing_Suitcase_pk");
 
                 entity.ToTable("Clothing_Suitcase");
 
-                entity.HasOne(d => d.IdClothingNavigation)
+                entity.HasOne(d => d.idClothingNavigation)
                     .WithMany(p => p.ClothingSuitcase)
-                    .HasForeignKey(d => d.IdClothing)
+                    .HasForeignKey(d => d.idClothing)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_Suitcase_Clothing");
 
-                entity.HasOne(d => d.IdSuitcaseNavigation)
+                entity.HasOne(d => d.idSuitcaseNavigation)
                     .WithMany(p => p.ClothingSuitcase)
-                    .HasForeignKey(d => d.IdSuitcase)
+                    .HasForeignKey(d => d.idSuitcase)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_Suitcase_Suitcase");
             });
 
             modelBuilder.Entity<ClothingTag>(entity =>
             {
-                entity.HasKey(e => new { e.IdClothing, e.IdTag })
+                entity.HasKey(e => new { e.idClothing, e.idTag })
                     .HasName("Clothing_Tag_pk");
 
                 entity.ToTable("Clothing_Tag");
 
-                entity.HasOne(d => d.IdClothingNavigation)
+                entity.HasOne(d => d.idClothingNavigation)
                     .WithMany(p => p.ClothingTag)
-                    .HasForeignKey(d => d.IdClothing)
+                    .HasForeignKey(d => d.idClothing)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_Tag_Clothing");
 
-                entity.HasOne(d => d.IdTagNavigation)
+                entity.HasOne(d => d.idTagNavigation)
                     .WithMany(p => p.ClothingTag)
-                    .HasForeignKey(d => d.IdTag)
+                    .HasForeignKey(d => d.idTag)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Clothing_Tag_Tags");
             });
 
             modelBuilder.Entity<ClothingType>(entity =>
             {
-                entity.HasKey(e => e.IdClothingType)
+                entity.HasKey(e => e.idClothingType)
                     .HasName("ClothingType_pk");
 
-                entity.Property(e => e.IdClothingType).ValueGeneratedOnAdd();
+                entity.Property(e => e.idClothingType).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -180,10 +180,10 @@ namespace Clothesy.Persistence
 
             modelBuilder.Entity<Color>(entity =>
             {
-                entity.HasKey(e => e.IdColor)
+                entity.HasKey(e => e.idColor)
                     .HasName("Color_pk");
 
-                entity.Property(e => e.IdColor).ValueGeneratedOnAdd();
+                entity.Property(e => e.idColor).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ColorName)
                     .IsRequired()
@@ -193,19 +193,19 @@ namespace Clothesy.Persistence
 
             modelBuilder.Entity<Suitcase>(entity =>
             {
-                entity.HasKey(e => e.IdSuitcase)
+                entity.HasKey(e => e.idSuitcase)
                     .HasName("Suitcase_pk");
 
-                entity.Property(e => e.IdSuitcase).ValueGeneratedOnAdd();
+                entity.Property(e => e.idSuitcase).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdTripNavigation)
+                entity.HasOne(d => d.idTripNavigation)
                     .WithMany(p => p.Suitcase)
-                    .HasForeignKey(d => d.IdTrip)
+                    .HasForeignKey(d => d.idTrip)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Suitcase_Trip");
 
@@ -213,10 +213,10 @@ namespace Clothesy.Persistence
 
             modelBuilder.Entity<Tags>(entity =>
             {
-                entity.HasKey(e => e.IdTag)
+                entity.HasKey(e => e.idTag)
                     .HasName("Tags_pk");
 
-                entity.Property(e => e.IdTag).ValueGeneratedOnAdd();
+                entity.Property(e => e.idTag).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.TagName)
                     .IsRequired()
@@ -226,10 +226,10 @@ namespace Clothesy.Persistence
 
             modelBuilder.Entity<Trip>(entity =>
             {
-                entity.HasKey(e => e.IdTrip)
+                entity.HasKey(e => e.idTrip)
                     .HasName("Trip_pk");
 
-                entity.Property(e => e.IdTrip).ValueGeneratedOnAdd();
+                entity.Property(e => e.idTrip).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.City)
                     .IsRequired()
@@ -250,19 +250,19 @@ namespace Clothesy.Persistence
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.IdUserNavigation)
+                entity.HasOne(d => d.idUserNavigation)
                     .WithMany(p => p.Trip)
-                    .HasForeignKey(d => d.IdUser)
+                    .HasForeignKey(d => d.idUser)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Suitcase_User");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasKey(e => e.IdUser)
+                entity.HasKey(e => e.idUser)
                     .HasName("User_pk");
 
-                entity.Property(e => e.IdUser).ValueGeneratedOnAdd();
+                entity.Property(e => e.idUser).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CreatedAt).HasColumnType("date");
 

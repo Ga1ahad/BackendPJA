@@ -9,11 +9,11 @@ namespace Clothesy.Domain.Entities
             ClothingSuitcase = new HashSet<ClothingSuitcase>();
         }
 
-        public int IdSuitcase { get; set; }
+        public int idSuitcase { get; set; }
         public string Name { get; set; }
-        public int IdTrip { get; set; }
+        public int idTrip { get; set; }
 
-        public virtual Trip IdTripNavigation { get; set; }
+        public virtual Trip idTripNavigation { get; set; }
         public virtual ICollection<ClothingSuitcase> ClothingSuitcase { get; set; }
     }
 }

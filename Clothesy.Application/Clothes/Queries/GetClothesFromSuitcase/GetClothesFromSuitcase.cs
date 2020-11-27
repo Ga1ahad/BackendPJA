@@ -11,7 +11,7 @@ namespace Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase
 {
     public class GetClothesFromSuitcase : IRequest<IEnumerable<Clothing>>
     {
-        public int IdUser { get; set; }
+        public int idUser { get; set; }
 
         public class Handler : IRequestHandler<GetClothesFromSuitcase, IEnumerable<Clothing>>
         {
@@ -25,7 +25,7 @@ namespace Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase
             public async Task<IEnumerable<Clothing>> Handle(GetClothesFromSuitcase request, CancellationToken cancellationToken)
             {
                 return await _context.Clothing
-                               .Where(c => c.IdUser == request.IdUser)
+                               .Where(c => c.idUser == request.idUser)
                                .OrderByDescending(c => c.CreatedAt)
                                .ToListAsync();
             }

@@ -2,10 +2,10 @@
 {
     public partial class ClothingTag
     {
-        public int IdClothing { get; set; }
-        public int IdTag { get; set; }
+        public int idClothing { get; set; }
+        public int idTag { get; set; }
 
-        public virtual Clothing IdClothingNavigation { get; set; }
-        public virtual Tags IdTagNavigation { get; set; }
+        public virtual Clothing idClothingNavigation { get; set; }
+        public virtual Tags idTagNavigation { get; set; }
     }
 }

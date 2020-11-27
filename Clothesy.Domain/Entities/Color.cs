@@ -9,7 +9,7 @@ namespace Clothesy.Domain.Entities
             ClothingColor = new HashSet<ClothingColor>();
         }
 
-        public int IdColor { get; set; }
+        public int idColor { get; set; }
         public string ColorName { get; set; }
 
         public virtual ICollection<ClothingColor> ClothingColor { get; set; }

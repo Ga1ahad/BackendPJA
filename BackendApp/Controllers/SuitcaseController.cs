@@ -1,13 +1,17 @@
-﻿using Clothesy.Domain.Entities;
+﻿using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
+using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Clothesy.Api.Controllers
 {
 
-    [Route("api/users/{IdUser:int}/[controller]")]
+    [Route("api/users/{idUser:int}/[controller]")]
     [ApiController]
     public class SuitcaseController : Controller
     {
@@ -18,10 +22,10 @@ namespace Clothesy.Api.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult GetSuitcases(int IdUser)
+        public IActionResult GetSuitcases(int idUser)
         {
-
-
+            // var req = new GetClothesFromSuitcase { idUser = idUser };
+            // var res = await Mediator.Send(req, new CancellationToken());
             //    var suitcases = from Suitcase in _context.Suitcase
             //                where IdUser.Equals(Suitcase.IdUser)
             //                  select Suitcase;
@@ -36,11 +40,11 @@ namespace Clothesy.Api.Controllers
         }
 
 
-        [HttpGet("{IdSuitcase:int}")]
-        public IActionResult GetSuitcases(int IdUser, int id)
+        [HttpGet("{idSuitcase:int}")]
+        public IActionResult GetSuitcases(int idUser, int id)
         {
 
-            var suitcase = _context.Suitcase.FirstOrDefault(s => s.IdSuitcase == id);
+            var suitcase = _context.Suitcase.FirstOrDefault(s => s.idSuitcase == id);
             if (suitcase == null)
             {
                 return NotFound();
@@ -60,11 +64,11 @@ namespace Clothesy.Api.Controllers
             return StatusCode(201, suitcase);
         }
 
-        [HttpPut("{IdSuitcase:int}")]
-        public IActionResult Update(int IdSuitcase, Suitcase updatedSuitcase)
+        [HttpPut("{idSuitcase:int}")]
+        public IActionResult Update(int idSuitcase, Suitcase updatedSuitcase)
         {
 
-            if (_context.Suitcase.Count(s => s.IdSuitcase == IdSuitcase) == 0)
+            if (_context.Suitcase.Count(s => s.idSuitcase == idSuitcase) == 0)
             {
                 return NotFound();
             }
@@ -75,10 +79,10 @@ namespace Clothesy.Api.Controllers
             return Ok(updatedSuitcase);
         }
 
-        [HttpDelete("{IdSuitcase:int}")]
+        [HttpDelete("{idSuitcase:int}")]
         public IActionResult Delete(int id)
         {
-            var suitcase = _context.Suitcase.FirstOrDefault(s => s.IdSuitcase == id);
+            var suitcase = _context.Suitcase.FirstOrDefault(s => s.idSuitcase == id);
             if (suitcase == null)
             {
                 return NotFound();

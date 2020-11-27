@@ -20,21 +20,21 @@ namespace Clothesy.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTrips(int IdUser)
+        public IActionResult GetTrips(int idUser)
         {
             var trips = from t in _context.Trip
-                        where t.IdUser == 1
+                        where t.idUser == 1
                         select t;
 
 
             return Ok(trips.Distinct());
         }
 
-        [HttpGet("{IdTrip:int}")]
-        public IActionResult GetTrip(int IdUser, int id)
+        [HttpGet("{idTrip:int}")]
+        public IActionResult GetTrip(int idUser, int id)
         {
 
-            var trip = _context.Trip.FirstOrDefault(t => t.IdTrip == id);
+            var trip = _context.Trip.FirstOrDefault(t => t.idTrip == id);
             if (trip == null)
             {
                 return NotFound();
@@ -45,17 +45,17 @@ namespace Clothesy.Api.Controllers
         [HttpPost]
         public IActionResult CreateTrip(Trip trip)
         {
-            trip.IdUser = 1;
+            trip.idUser = 1;
             _context.Trip.Add(trip);
             _context.SaveChanges();
             return StatusCode(201, trip);
         }
 
-        [HttpPut("{IdTrip:int}")]
-        public IActionResult Update(int IdTrip, Trip updatedTrip)
+        [HttpPut("{idTrip:int}")]
+        public IActionResult Update(int idTrip, Trip updatedTrip)
         {
 
-            if (_context.Trip.Count(t => t.IdTrip == IdTrip) == 0)
+            if (_context.Trip.Count(t => t.idTrip == idTrip) == 0)
             {
                 return NotFound();
             }
@@ -66,10 +66,10 @@ namespace Clothesy.Api.Controllers
             return Ok(updatedTrip);
         }
 
-        [HttpDelete("{IdTrip:int}")]
+        [HttpDelete("{idTrip:int}")]
         public IActionResult Delete(int id)
         {
-            var trip = _context.Trip.FirstOrDefault(t => t.IdTrip == id);
+            var trip = _context.Trip.FirstOrDefault(t => t.idTrip == id);
             if (trip == null)
             {
                 return NotFound();

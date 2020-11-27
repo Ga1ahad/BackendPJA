@@ -11,7 +11,7 @@ namespace Clothesy.Domain.Entities
             Trip = new HashSet<Trip>();
         }
 
-        public int IdUser { get; set; }
+        public int idUser { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
