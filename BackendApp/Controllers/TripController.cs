@@ -1,9 +1,9 @@
-﻿using Clothesy.Domain.Entities;
-using Clothesy.Persistence;
+﻿using Clothesy.Persistence;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
+using MediatR;
+using System.Threading.Tasks;
+using Clothesy.Application.Trips.Commands;
+using Clothesy.Application.Trips.Queries;
 
 namespace Clothesy.Api.Controllers
 {
@@ -13,71 +13,52 @@ namespace Clothesy.Api.Controllers
     public class TripController : Controller
     {
         private readonly ClothesyDbContext _context;
+        private readonly IMediator _mediator;
 
-        public TripController(ClothesyDbContext context)
+        public TripController(ClothesyDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult GetTrips(int idUser)
+        public async Task<IActionResult> GetTrips(int idUser)
         {
-            var trips = from t in _context.Trip
-                        where t.idUser == 1
-                        select t;
+            var req = new GetTripsFromUser { idUser = 1 };
+            var res = await _mediator.Send(req);
+            return Ok(res);
 
-
-            return Ok(trips.Distinct());
         }
 
         [HttpGet("{idTrip:int}")]
-        public IActionResult GetTrip(int idUser, int id)
+        public async Task<IActionResult> GetTrip(int idUser, int idTrip)
         {
-
-            var trip = _context.Trip.FirstOrDefault(t => t.idTrip == id);
-            if (trip == null)
-            {
-                return NotFound();
-            }
-            return Ok(trip);
+            var req = new GetTripByIdFromUser { idUser = 1, idTrip = idTrip };
+            var res = await _mediator.Send(req);
+            return Ok(res);
         }
 
         [HttpPost]
-        public IActionResult CreateTrip(Trip trip)
+        public async Task<IActionResult> CreateTrip(CreateTripCommand command)
         {
-            trip.idUser = 1;
-            _context.Trip.Add(trip);
-            _context.SaveChanges();
-            return StatusCode(201, trip);
+            var commandResult = await _mediator.Send(command);
+            return Ok(commandResult);
         }
 
         [HttpPut("{idTrip:int}")]
-        public IActionResult Update(int idTrip, Trip updatedTrip)
+        public async Task<IActionResult> Update(int idTrip, UpdateTripCommand command)
         {
-
-            if (_context.Trip.Count(t => t.idTrip == idTrip) == 0)
-            {
-                return NotFound();
-            }
-            _context.Trip.Attach(updatedTrip);
-            _context.Entry(updatedTrip).State = EntityState.Modified;
-            _context.SaveChanges();
-
-            return Ok(updatedTrip);
+            command.idTrip = idTrip;
+            var commandResult = await _mediator.Send(command);
+            return Ok(commandResult);
         }
 
         [HttpDelete("{idTrip:int}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int idUser, int idTrip)
         {
-            var trip = _context.Trip.FirstOrDefault(t => t.idTrip == id);
-            if (trip == null)
-            {
-                return NotFound();
-            }
-            _context.Trip.Remove(trip);
-            _context.SaveChanges();
-
-            return Ok(trip);
+            var req = new DeleteTripByIdCommand { idTrip = idTrip };
+            var res = await _mediator.Send(req);
+            return Ok(res);
         }
 
 

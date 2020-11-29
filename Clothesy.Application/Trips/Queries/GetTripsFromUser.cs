@@ -7,27 +7,26 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase
+namespace Clothesy.Application.Trips.Queries
 {
-    public class GetClothesFromSuitcase : IRequest<IEnumerable<Clothing>>
+    public class GetTripsFromUser : IRequest<IEnumerable<Trip>>
     {
         public int idUser { get; set; }
 
-        public class Handler : IRequestHandler<GetClothesFromSuitcase, IEnumerable<Clothing>>
+        public class Handler : IRequestHandler<GetTripsFromUser, IEnumerable<Trip>>
         {
             private readonly IClothesyDb _context;
-            private readonly IMediator _mediator;
             public Handler(IClothesyDb context, IMediator mediator)
             {
                 _context = context;
             }
 
-            public async Task<IEnumerable<Clothing>> Handle(GetClothesFromSuitcase request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Trip>> Handle(GetTripsFromUser request, CancellationToken cancellationToken)
             {
-                return await _context.Clothing
+
+                return await _context.Trip
                                .Where(c => c.idUser == request.idUser)
-                               .OrderByDescending(c => c.CreatedAt)
-                               .ToListAsync();
+                               .ToListAsync(cancellationToken: cancellationToken);
             }
         }
     }
