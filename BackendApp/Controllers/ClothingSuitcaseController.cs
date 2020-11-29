@@ -1,9 +1,10 @@
-﻿using Clothesy.Domain.Entities;
+﻿using Clothesy.Application.Clothes.Queries;
+using Clothesy.Application.Clothes.Commands;
 using Clothesy.Persistence;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-
+using System.Threading.Tasks;
 namespace Clothesy.Api.Controllers
 {
 
@@ -12,38 +13,21 @@ namespace Clothesy.Api.Controllers
     public class ClothingSuitcaseController : Controller
     {
         private readonly ClothesyDbContext _context;
+        private readonly IMediator _mediator;
 
-        public ClothingSuitcaseController(ClothesyDbContext context)
+        public ClothingSuitcaseController(ClothesyDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult GetClothesSuitcase(int idUser, int idSuitcase)
+        public async Task<IActionResult> GetClothings(int idUser)
         {
-            var clothes = from c in _context.Clothing
-                          join cs in _context.ClothingSuitcase
-                          on c.idClothing equals cs.idClothing
-                          where cs.idSuitcase == idUser && c.idUser == idSuitcase
-                          select c;
-
-            if (clothes == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(clothes);
+            var req = new GetClothesFromUser { idUser = 1 };
+            var res = await _mediator.Send(req);
+            return Ok(res);
         }
-
-        [HttpPost]
-        public IActionResult CreateClothingsSuitcase(ClothingSuitcase clothingSuitcase)
-        {
-            _context.ClothingSuitcase.Add(clothingSuitcase);
-            _context.SaveChanges();
-            return StatusCode(201, clothingSuitcase);
-        }
-
-
 
     }
 }

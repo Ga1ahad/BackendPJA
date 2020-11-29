@@ -1,4 +1,4 @@
-﻿using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
+﻿using Clothesy.Application.Clothes.Queries;
 using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
 using MediatR;
@@ -16,29 +16,21 @@ namespace Clothesy.Api.Controllers
     public class SuitcaseController : Controller
     {
         private readonly ClothesyDbContext _context;
+        private readonly IMediator _mediator;
 
-        public SuitcaseController(ClothesyDbContext context)
+        public SuitcaseController(ClothesyDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
         [HttpGet]
-        public IActionResult GetSuitcases(int idUser)
-        {
-            // var req = new GetClothesFromSuitcase { idUser = idUser };
-            // var res = await Mediator.Send(req, new CancellationToken());
-            //    var suitcases = from Suitcase in _context.Suitcase
-            //                where IdUser.Equals(Suitcase.IdUser)
-            //                  select Suitcase;
+        //    public async Task<IActionResult> GetSuitcases(int idUser)
+        //  {
+        //  var req = new GetClothesFromSuitcase { idUser = idUser };
+        //     var res = await _mediator.Send(req);
 
-            //   var suitcases2 = from s in _context.Suitcase
-            //                  join t in _context.Trip
-            //                   on s.IdTrip equals t.IdTrip
-            //                where IdUser.Equals(s.IdUser)
-            //                select new { s, t.IdTrip, t.TripName, t.StartTrip, t.EndTrip, t.Country, t.City, t.ZipCode };
-
-            return Ok(null);
-        }
-
+        //    return Ok(res);
+        // }
 
         [HttpGet("{idSuitcase:int}")]
         public IActionResult GetSuitcases(int idUser, int id)
@@ -51,10 +43,6 @@ namespace Clothesy.Api.Controllers
             }
             return Ok(suitcase);
         }
-
-
-
-
 
         [HttpPost]
         public IActionResult CreateCuitcase(Suitcase suitcase)

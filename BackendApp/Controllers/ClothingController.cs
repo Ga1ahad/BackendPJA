@@ -1,85 +1,69 @@
-﻿using Clothesy.Application.Clothes.Queries.GetClothesFromSuitcase;
-using Clothesy.Application.Persistence;
-using Clothesy.Domain.Entities;
+﻿using Clothesy.Application.Clothes.Queries;
+using Clothesy.Application.Clothes.Commands;
+using Clothesy.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Clothesy.Api.Controllers
 {
 
-    [Route("api/users/{idUser:int}")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ClothingController : BaseController
+    public class ClothingController : Controller
     {
-        public ClothingController(IClothesyDb context) : base(context)
+        private readonly ClothesyDbContext _context;
+        private readonly IMediator _mediator;
+        public ClothingController(ClothesyDbContext context, IMediator mediator)
         {
+            _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetClothings(int idUser)
         {
-            var clothings = await Mediator.Send(new GetClothesFromSuitcase
-            {
-                idUser = idUser
-            });
-            return Ok(clothings);
+            var req = new GetClothesFromUser { idUser = 1 };
+            var res = await _mediator.Send(req);
+            return Ok(res);
+
         }
 
         [HttpGet("{idClothing:int}")]
-        public IActionResult GetClothings(int idUser, int id)
+        public async Task<IActionResult> GetClothings(int idUser, int idClothing)
         {
-
-            var cloth = Context.Clothing.FirstOrDefault(c => c.idClothing == id);
-            if (cloth == null)
-            {
-                return NotFound();
-            }
-            return Ok(cloth);
+            var req = new GetClothesFromUser { idUser = 1, idClothing = idClothing };
+            var res = await _mediator.Send(req);
+            return Ok(res);
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesDefaultResponseType]
-        public IActionResult CreateClothings(Clothing clothing)
+        public async Task<IActionResult> CreateClothings(CreateClothesCommand command)
         {
-            Context.Clothing.Add(clothing);
-            Context.SaveChanges();
-            return StatusCode(201, clothing);
+            var commandResult = await _mediator.Send(command);
+            return Ok(commandResult);
         }
 
         [HttpPut("{idClothing:int}")]
-        public IActionResult Update(int idClothing, Clothing updatedClothing)
+        public async Task<IActionResult> Update(int idClothing, UpdateClothingCommand command)
         {
-
-            if (Context.Clothing.Count(c => c.idClothing == idClothing) == 0)
-            {
-                return NotFound();
-            }
-            Context.Clothing.Attach(updatedClothing);
-            Context.Entry(updatedClothing).State = EntityState.Modified;
-            Context.SaveChanges();
-
-            return Ok(updatedClothing);
+            command.idClothing = idClothing;
+            var commandResult = await _mediator.Send(command);
+            return Ok(commandResult);
         }
 
         [HttpDelete("{idClothing:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int idClothing)
         {
-            var cloth = Context.Clothing.FirstOrDefault(c => c.idClothing == id);
-            if (cloth == null)
-            {
-                return NotFound();
-            }
-            Context.Clothing.Remove(cloth);
-            Context.SaveChanges();
-
-            return Ok(cloth);
+            var req = new DeleteClothingCommand { idClothing = idClothing };
+            var res = await _mediator.Send(req);
+            return Ok(res);
         }
     }
 }
