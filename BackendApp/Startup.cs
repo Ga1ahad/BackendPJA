@@ -31,11 +31,14 @@ namespace Clothesy.ApiApp
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,
-                            ValidateAudience = true,
-                            ValidateLifetime = true,
                             ValidIssuer = "Gakko",
+
+                            ValidateAudience = true,
                             ValidAudience = "Students",
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
+
+                            ValidateLifetime = true,
+
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("condimentumvestibulumSuspendissesitametpulvinarorcicondimentummollisjusto"))
                         };
                     });
 

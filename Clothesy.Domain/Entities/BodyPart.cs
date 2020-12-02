@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace Clothesy.Domain.Entities
 {
     public partial class BodyPart
