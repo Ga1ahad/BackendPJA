@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Clothesy.Domain.Entities
+namespace Clothesy.Api.DTOs
 {
-    public partial class User
+    public class RegisterRequestDto
     {
-        public User()
-        {
-            Clothing = new HashSet<Clothing>();
-            Trip = new HashSet<Trip>();
-        }
-
-        public int idUser { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -19,8 +14,5 @@ namespace Clothesy.Domain.Entities
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
         public DateTime LastLogin { get; set; }
-
-        public virtual ICollection<Clothing> Clothing { get; set; }
-        public virtual ICollection<Trip> Trip { get; set; }
     }
 }

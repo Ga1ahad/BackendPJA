@@ -16,7 +16,6 @@
 	<ItemGroup>
 	  <Folder Include="Suitcases\Commands\" />
 	  <Folder Include="Suitcases\Queries\" />
-	  <Folder Include="Users\Commands\" />
 	  <Folder Include="Users\Queries\" />
 	</ItemGroup>
 

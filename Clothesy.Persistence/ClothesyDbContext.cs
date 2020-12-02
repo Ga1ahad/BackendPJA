@@ -287,11 +287,7 @@ namespace Clothesy.Persistence
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Salt)
-                    .HasMaxLength(512)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
             });
 
