@@ -1,16 +1,15 @@
-﻿using Clothesy.Application.Clothes.Queries;
-using Clothesy.Domain.Entities;
+﻿using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Clothesy.Api.Controllers
 {
-
+    [Authorize]
     [Route("api/users/{idUser:int}/[controller]")]
     [ApiController]
     public class SuitcaseController : Controller
