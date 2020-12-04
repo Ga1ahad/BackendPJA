@@ -9,6 +9,8 @@ namespace Clothesy.Domain.Entities
         {
             Clothing = new HashSet<Clothing>();
             Trip = new HashSet<Trip>();
+            this.CreatedAt = DateTime.UtcNow;
+            this.LastLogin = DateTime.UtcNow;
         }
 
         public int idUser { get; set; }
