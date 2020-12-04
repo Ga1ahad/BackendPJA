@@ -4,10 +4,12 @@ using MediatR;
 using System.Threading.Tasks;
 using Clothesy.Application.Trips.Commands;
 using Clothesy.Application.Trips.Queries;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Clothesy.Api.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TripController : Controller

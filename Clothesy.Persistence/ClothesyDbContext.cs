@@ -273,17 +273,7 @@ namespace Clothesy.Persistence
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FirstName)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.LastLogin).HasColumnType("date");
-
-                entity.Property(e => e.LastName)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Password)
                     .IsRequired()

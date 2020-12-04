@@ -1,13 +1,14 @@
 ﻿using Clothesy.Application.Clothes.Queries;
-using Clothesy.Application.Clothes.Commands;
 using Clothesy.Persistence;
 using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+
+
 namespace Clothesy.Api.Controllers
 {
-
+    [Authorize]
     [Route("api/users/{idUser:int}/suitcases/{idSuitcase:int}")]
     [ApiController]
     public class ClothingSuitcaseController : Controller

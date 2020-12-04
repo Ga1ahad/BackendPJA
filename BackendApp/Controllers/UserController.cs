@@ -13,8 +13,10 @@ using System.Threading.Tasks;
 using Clothesy.Application.Trips.Commands;
 using System.Linq;
 
+
 namespace Clothesy.ApiApp.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : Controller
