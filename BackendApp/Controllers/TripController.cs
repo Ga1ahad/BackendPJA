@@ -5,11 +5,15 @@ using System.Threading.Tasks;
 using Clothesy.Application.Trips.Commands;
 using Clothesy.Application.Trips.Queries;
 using Microsoft.AspNetCore.Authorization;
-
+using Microsoft.AspNetCore.Identity;
+using Clothesy.Domain.Entities;
+using System.Security.Claims;
+using System.Linq;
+using System;
 
 namespace Clothesy.Api.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class TripController : Controller
@@ -26,7 +30,8 @@ namespace Clothesy.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTrips(int idUser)
         {
-            var req = new GetTripsFromUser { idUser = 1 };
+            var userName = User.Identity.Name;
+            var req = new GetTripsFromUser { idUser = Int16.Parse(userName) };
             var res = await _mediator.Send(req);
             return Ok(res);
 
@@ -35,7 +40,8 @@ namespace Clothesy.Api.Controllers
         [HttpGet("{idTrip:int}")]
         public async Task<IActionResult> GetTrip(int idUser, int idTrip)
         {
-            var req = new GetTripByIdFromUser { idUser = 1, idTrip = idTrip };
+            //       var user = await _userManager.GetUserAsync(User);
+            var req = new GetTripByIdFromUser { idUser = 11, idTrip = idTrip };
             var res = await _mediator.Send(req);
             return Ok(res);
         }
@@ -43,6 +49,8 @@ namespace Clothesy.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTrip(CreateTripCommand command)
         {
+            var userName = User.Identity.Name;
+            command.idUser = Int16.Parse(userName);
             var commandResult = await _mediator.Send(command);
             return Ok(commandResult);
         }

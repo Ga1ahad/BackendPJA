@@ -14,9 +14,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Suitcases\Commands\" />
-	  <Folder Include="Suitcases\Queries\" />
-	  <Folder Include="Users\Queries\" />
+		<Folder Include="Suitcases\Commands\" />
+		<Folder Include="Suitcases\Queries\" />
+		<Folder Include="Users\Queries\" />
 	</ItemGroup>
 
 </Project>
