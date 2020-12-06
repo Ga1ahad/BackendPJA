@@ -52,10 +52,12 @@ namespace Clothesy.ApiApp.Controllers
 
             var claims = new[]
             {
-              new Claim(JwtRegisteredClaimNames.UniqueName, request.Email),
+              new Claim(JwtRegisteredClaimNames.UniqueName, user.idUser.ToString()),
               new Claim(ClaimTypes.NameIdentifier, user.idUser.ToString()),
               new Claim(ClaimTypes.Name, user.Email),
-              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+              new Claim(JwtRegisteredClaimNames.Sub,  "suject"),
+              new Claim("idUser", user.idUser.ToString()),
+              new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("condimentumvestibulumSuspendissesitametpulvinarorcicondimentummollisjusto"));
