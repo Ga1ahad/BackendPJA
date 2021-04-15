@@ -22,5 +22,10 @@ namespace Clothesy.Domain.Entities
 
         public virtual ICollection<Clothing> Clothing { get; set; }
         public virtual ICollection<Trip> Trip { get; set; }
+
+        public static int FindFirstValue(object nameIdentifier)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,8 @@
+using Amazon.S3;
+using Clothesy.Application.Helpers;
 using Clothesy.Application.Persistence;
+using Clothesy.Application.Services;
+using Clothesy.Domain.Entities;
 using Clothesy.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -9,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 namespace Clothesy.ApiApp
@@ -52,6 +57,15 @@ namespace Clothesy.ApiApp
             services.AddMediatR(typeof(IClothesyDb).Assembly);
 
             services.AddControllers();
+
+            var appSettingsSection = Configuration.GetSection("ServiceConfiguration");
+            services.AddAWSService<IAmazonS3>();
+            services.Configure<ServiceConfiguration>(appSettingsSection);
+            //  services.AddTransient<IAWSS3BucketHelper, AWSS3BucketHelper>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +78,7 @@ namespace Clothesy.ApiApp
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseHttpsRedirection();
 
             app.UseCors(conf =>
             {
@@ -74,7 +89,11 @@ namespace Clothesy.ApiApp
             });
 
             app.UseRouting();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseAuthentication();
             app.UseAuthorization();
 

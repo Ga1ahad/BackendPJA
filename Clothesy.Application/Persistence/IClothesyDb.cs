@@ -8,7 +8,6 @@ namespace Clothesy.Application.Persistence
 {
     public interface IClothesyDb
     {
-        public DbSet<BodyPart> BodyPart { get; set; }
         public DbSet<Clothing> Clothing { get; set; }
         public DbSet<ClothingColor> ClothingColor { get; set; }
         public DbSet<ClothingPicture> ClothingPicture { get; set; }

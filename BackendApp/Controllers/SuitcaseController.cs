@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
-
+using Clothesy.Application.Clothes.Commands;
+using System.Threading.Tasks;
 
 namespace Clothesy.Api.Controllers
 {
@@ -44,11 +45,15 @@ namespace Clothesy.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCuitcase(Suitcase suitcase)
+        public async Task<IActionResult> CreateCuitcase(CreateClothesCommand command)
         {
-            _context.Suitcase.Add(suitcase);
-            _context.SaveChanges();
-            return StatusCode(201, suitcase);
+            //var image = clh.Image;
+
+            //     var imageResponse = await AmazonS3Service.UploadObject(image);
+            var userName = User.Identity.Name;
+
+            var commandResult = await _mediator.Send(command);
+            return Ok(commandResult);
         }
 
         [HttpPut("{idSuitcase:int}")]
