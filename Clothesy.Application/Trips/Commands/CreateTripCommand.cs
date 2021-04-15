@@ -34,7 +34,7 @@ namespace Clothesy.Application.Trips.Commands
                 trip.Country = request.Country;
                 trip.City = request.City;
                 trip.ZipCode = request.ZipCode;
-                trip.idUser = 1;
+                trip.idUser = request.idUser;
                 _context.Trip.Add(trip);
                 await _context.SaveChangesAsync(cancellationToken);
                 return trip.idTrip;

@@ -15,7 +15,6 @@ namespace Clothesy.Persistence
         {
         }
 
-        public virtual DbSet<BodyPart> BodyPart { get; set; }
         public virtual DbSet<Clothing> Clothing { get; set; }
         public virtual DbSet<ClothingColor> ClothingColor { get; set; }
         public virtual DbSet<ClothingPicture> ClothingPicture { get; set; }
@@ -30,18 +29,6 @@ namespace Clothesy.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BodyPart>(entity =>
-            {
-                entity.HasKey(e => e.idBodyPart)
-                    .HasName("BodyPart_pk");
-
-                entity.Property(e => e.idBodyPart).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-            });
 
             modelBuilder.Entity<Clothing>(entity =>
             {
@@ -52,7 +39,7 @@ namespace Clothesy.Persistence
 
                 entity.Property(e => e.CreatedAt).HasColumnType("date");
 
-                entity.Property(e => e.Description)
+                entity.Property(e => e.Url)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
@@ -60,12 +47,6 @@ namespace Clothesy.Persistence
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.idBodyPartNavigation)
-                    .WithMany(p => p.Clothing)
-                    .HasForeignKey(d => d.idBodyPart)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Clothing_BodyPart");
 
                 entity.HasOne(d => d.idClothingTypeNavigation)
                     .WithMany(p => p.Clothing)

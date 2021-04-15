@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Clothesy.Api.DTOs;
+using Clothesy.Application.Services;
+using System.Security.Claims;
+using System.Collections.Generic;
+using System;
 
 namespace Clothesy.Api.Controllers
 {
@@ -40,11 +45,21 @@ namespace Clothesy.Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> CreateClothings(CreateClothesCommand command)
+        public async Task<IActionResult> CreateClothings([FromForm] string name, [FromForm] int idClothingType, [FromForm] string tags, IFormFile image)
         {
+
+            var imageResponse = await AmazonS3Service.UploadObject(image);
+            var idUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            CreateClothesCommand command = new CreateClothesCommand()
+            {
+                Name = name,
+                idUser = Int32.Parse(idUser),
+                Url = imageResponse.FileName,
+                idClothingType = idClothingType,
+                Tags = tags
+            };
             var commandResult = await _mediator.Send(command);
+
             return Ok(commandResult);
         }
 

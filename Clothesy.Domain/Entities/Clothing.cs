@@ -16,12 +16,10 @@ namespace Clothesy.Domain.Entities
         public int idClothing { get; set; }
         public string Name { get; set; }
         public int idClothingType { get; set; }
-        public string Description { get; set; }
+        public string Url { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int idBodyPart { get; set; }
         public int idUser { get; set; }
 
-        public virtual BodyPart idBodyPartNavigation { get; set; }
         public virtual ClothingType idClothingTypeNavigation { get; set; }
         public virtual User idUserNavigation { get; set; }
         public virtual ICollection<ClothingColor> ClothingColor { get; set; }

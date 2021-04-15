@@ -3,6 +3,8 @@ using Clothesy.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,17 +13,10 @@ namespace Clothesy.Application.Clothes.Commands
     public class CreateClothesCommand : IRequest<int>
     {
         public string Name { get; set; }
+        public string Url { get; set; }
         public int idClothingType { get; set; }
-        public string Description { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int idBodyPart { get; set; }
         public int idUser { get; set; }
-
-        public virtual BodyPart idBodyPartNavigation { get; set; }
-        public virtual ClothingType idClothingTypeNavigation { get; set; }
-        public virtual ICollection<ClothingColor> ClothingColor { get; set; }
-        public virtual ICollection<ClothingPicture> ClothingPicture { get; set; }
-        public virtual ICollection<ClothingTag> ClothingTag { get; set; }
+        public string Tags { get; set; }
 
         public class CreateClothesCommandHandler : IRequestHandler<CreateClothesCommand, int>
         {
@@ -35,13 +30,15 @@ namespace Clothesy.Application.Clothes.Commands
             {
                 var clothing = new Clothing();
                 clothing.Name = request.Name;
-                clothing.Description = request.Description;
-                clothing.CreatedAt = request.CreatedAt;
-                clothing.idBodyPart = request.idBodyPart;
+                clothing.Url = request.Url;
+                clothing.idClothingType = request.idClothingType;
                 clothing.idUser = request.idUser;
-                clothing.ClothingColor = request.ClothingColor;
-                clothing.ClothingPicture = request.ClothingPicture;
-                clothing.ClothingTag = request.ClothingTag;
+                string tagReq = request.Tags;
+                string[] tags = tagReq.Split(',');
+                foreach (var tag in tags)
+                {
+                    clothing.ClothingTag.Add(new ClothingTag { idTag = Int32.Parse(tag), idClothing = clothing.idClothing });
+                }
                 _context.Clothing.Add(clothing);
                 await _context.SaveChangesAsync(cancellationToken);
                 return clothing.idClothing;
