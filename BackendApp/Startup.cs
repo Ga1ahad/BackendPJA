@@ -61,7 +61,6 @@ namespace Clothesy.ApiApp
             var appSettingsSection = Configuration.GetSection("ServiceConfiguration");
             services.AddAWSService<IAmazonS3>();
             services.Configure<ServiceConfiguration>(appSettingsSection);
-            //  services.AddTransient<IAWSS3BucketHelper, AWSS3BucketHelper>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });

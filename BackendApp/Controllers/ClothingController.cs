@@ -30,7 +30,8 @@ namespace Clothesy.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetClothings(int idUser)
         {
-            var req = new GetClothesFromUser { idUser = 1 };
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var req = new GetClothesFromUser { idUser = Int32.Parse(id) };
             var res = await _mediator.Send(req);
             return Ok(res);
 
