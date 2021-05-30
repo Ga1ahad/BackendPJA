@@ -10,8 +10,8 @@ namespace Clothesy.Application.Services
 {
     public class AmazonS3Service
     {
-        private static string accessKey = "AKIAIGX7QIXDG65TXV7A";
-        private static string accessSecret = "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";
+        private static string accessKey = "";
+        private static string accessSecret = "";
         private static string bucket = "clothesybucket";
 
 
