@@ -33,7 +33,7 @@ namespace Clothesy.Application.Clothes.Queries
                                .Select(c => new ClothingDto
                                {
                                    Name = c.Name,
-                                   Tags = c.ClothingTag.Select(o => o.idTagNavigation.TagName),
+                                   Tags = string.Join(",", c.ClothingTag.Select(o => o.idTagNavigation.TagName).ToArray()),
                                    Url = "https://clothesybucket.s3.eu-central-1.amazonaws.com/" + c.Url,
                                    ClothingTypeName = c.idClothingTypeNavigation.Name,
 

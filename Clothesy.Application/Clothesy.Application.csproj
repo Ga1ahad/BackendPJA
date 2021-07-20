@@ -20,6 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="ClothingTypes\Commands\" />
 		<Folder Include="Suitcases\Commands\" />
 		<Folder Include="Suitcases\Queries\" />
 		<Folder Include="Users\Queries\" />
