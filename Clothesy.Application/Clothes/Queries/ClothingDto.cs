@@ -10,8 +10,7 @@ namespace Clothesy.Application.Clothes.Queries
 
         public string Name { get; set; }
         public string ClothingTypeName { get; set; }
-
-        public IEnumerable<string> Tags { get; internal set; }
         public string Url { get; set; }
+        public string Tags { get; internal set; }
     }
 }
