@@ -40,7 +40,8 @@ namespace Clothesy.Api.Controllers
         [HttpGet("{idClothing:int}")]
         public async Task<IActionResult> GetClothings(int idUser, int idClothing)
         {
-            var req = new GetClothesFromUser { idUser = 1, idClothing = idClothing };
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var req = new GetClothesById { idUser = Int32.Parse(id), idClothing = idClothing };
             var res = await _mediator.Send(req);
             return Ok(res);
         }
@@ -60,7 +61,6 @@ namespace Clothesy.Api.Controllers
                 Tags = tags
             };
             var commandResult = await _mediator.Send(command);
-
             return Ok(commandResult);
         }
 

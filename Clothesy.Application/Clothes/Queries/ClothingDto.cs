@@ -6,8 +6,7 @@ namespace Clothesy.Application.Clothes.Queries
 {
     public class ClothingDto
     {
-
-
+        public int idClothing { get; set; }
         public string Name { get; set; }
         public string ClothingTypeName { get; set; }
         public string Url { get; set; }
