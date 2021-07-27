@@ -49,8 +49,9 @@ namespace Clothesy.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTrip(CreateTripCommand command)
         {
-            var userName = User.Claims;
+            var idUser = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             // command.idUser = Int16.Parse(userName);
+            command.idUser = idUser;
             var commandResult = await _mediator.Send(command);
             return Ok(commandResult);
         }

@@ -32,6 +32,7 @@ namespace Clothesy.Application.Clothes.Queries
                                .Where(u => u.idUser == request.idUser)
                                .Select(c => new ClothingDto
                                {
+                                   idClothing = c.idClothing,
                                    Name = c.Name,
                                    Tags = string.Join(",", c.ClothingTag.Select(o => o.idTagNavigation.TagName).ToArray()),
                                    Url = "https://clothesybucket.s3.eu-central-1.amazonaws.com/" + c.Url,
