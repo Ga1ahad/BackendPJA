@@ -65,9 +65,16 @@ namespace Clothesy.Api.Controllers
         }
 
         [HttpPut("{idClothing:int}")]
-        public async Task<IActionResult> Update(int idClothing, UpdateClothingCommand command)
+        public async Task<IActionResult> Update([FromForm] string name, [FromForm] int idClothingType, [FromForm] string tags, IFormFile image)
         {
-            command.idClothing = idClothing;
+            var idUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            UpdateClothesCommand command = new UpdateClothesCommand()
+            {
+                Name = name,
+                idUser = Int32.Parse(idUser),
+                idClothingType = idClothingType,
+                Tags = tags
+            };
             var commandResult = await _mediator.Send(command);
             return Ok(commandResult);
         }
