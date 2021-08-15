@@ -10,18 +10,14 @@ namespace Clothesy.Application.Services
 {
     public class AmazonS3Service
     {
-        private static string accessKey = "";
-        private static string accessSecret = "";
-        private static string bucket = "clothesybucket";
 
-
-        public static async Task<GetObjectModel> GetObject(string name)
+        public static async Task<GetObjectModel> GetObject(string name, string bucketName, string secretKey, string accessKey)
         {
-            var client = new AmazonS3Client(accessKey, accessSecret, Amazon.RegionEndpoint.EUCentral1);
+            var client = new AmazonS3Client(accessKey, secretKey, Amazon.RegionEndpoint.EUCentral1);
 
             GetObjectRequest request = new GetObjectRequest
             {
-                BucketName = bucket,
+                BucketName = bucketName,
                 Key = name
             };
             var responseObject = await client.GetObjectAsync(request);
@@ -33,10 +29,18 @@ namespace Clothesy.Application.Services
             };
         }
 
-        public static async Task<UploadObjectModel> UploadObject(IFormFile file)
+        public static async Task<UploadObjectModel> UploadObject(IFormFile file, string bucketName, string secretKey, string accessKey)
         {
-            // connecting to the client
-            var client = new AmazonS3Client(accessKey, accessSecret, Amazon.RegionEndpoint.EUCentral1);
+            if (file == null)
+            {
+                return new UploadObjectModel
+                {
+                    Success = false,
+                    FileName = "0b4ec21f-be0e-4ec9-8380-40e21a780f49plain-white-background-1480544970glP.jpg"
+                };
+            }
+            // connecting to the clientZ
+            var client = new AmazonS3Client(accessKey, secretKey, Amazon.RegionEndpoint.EUCentral1);
 
             byte[] fileBytes = new Byte[file.Length];
             file.OpenReadStream().Read(fileBytes, 0, Int32.Parse(file.Length.ToString()));
@@ -49,7 +53,7 @@ namespace Clothesy.Application.Services
             {
                 var request = new PutObjectRequest
                 {
-                    BucketName = bucket,
+                    BucketName = bucketName,
                     Key = fileName,
                     InputStream = stream,
                     ContentType = file.ContentType,
@@ -78,13 +82,13 @@ namespace Clothesy.Application.Services
             }
         }
 
-        public static async Task<UploadObjectModel> RemoveObject(String fileName)
+        public static async Task<UploadObjectModel> RemoveObject(String fileName, string bucketName, string secretKey, string accessKey)
         {
-            var client = new AmazonS3Client(accessKey, accessSecret, Amazon.RegionEndpoint.EUCentral1);
+            var client = new AmazonS3Client(accessKey, secretKey, Amazon.RegionEndpoint.EUCentral1);
 
             var request = new DeleteObjectRequest
             {
-                BucketName = bucket,
+                BucketName = bucketName,
                 Key = fileName
             };
 

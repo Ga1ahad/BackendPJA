@@ -17,6 +17,9 @@ namespace Clothesy.Application.Clothes.Commands
         public int idClothingType { get; set; }
         public int idUser { get; set; }
         public string Tags { get; set; }
+        public string AccessKey { get; set; }
+        public string SecretKey { get; set; }
+        public string BucketName { get; set; }
 
         public class CreateClothesCommandHandler : IRequestHandler<CreateClothesCommand, int>
         {

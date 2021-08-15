@@ -37,7 +37,7 @@ namespace Clothesy.Application.Clothes.Queries
                                    Tags = string.Join(",", c.ClothingTag.Select(o => o.idTagNavigation.TagName).ToArray()),
                                    Url = "https://clothesybucket.s3.eu-central-1.amazonaws.com/" + c.Url,
                                    ClothingTypeName = c.idClothingTypeNavigation.Name,
-
+                                   idClothingType = c.idClothingTypeNavigation.idClothingType,
                                }
                                )
                                .ToListAsync(cancellationToken: cancellationToken);

@@ -18,6 +18,7 @@ namespace Clothesy.Application.Clothes.Commands
         public int idClothingType { get; set; }
         public int idUser { get; set; }
         public string Tags { get; set; }
+        public int idClothing { get; set; }
 
         public class UpdateClothesCommandHandler : IRequestHandler<UpdateClothesCommand, int>
         {
@@ -30,8 +31,8 @@ namespace Clothesy.Application.Clothes.Commands
             public async Task<int> Handle(UpdateClothesCommand request, CancellationToken cancellationToken)
             {
                 //var clothing = new Clothing();
-                var clothing = _context.Clothing.Single(a => a.idClothing == 46);
-                var old_tags = _context.ClothingTag.Where(c => c.idClothing == 46);
+                var clothing = _context.Clothing.Single(a => a.idClothing == request.idClothing);
+                var old_tags = _context.ClothingTag.Where(c => c.idClothing == request.idClothing);
                 clothing.Name = request.Name;
                 clothing.idClothingType = request.idClothingType;
                 string tagReq = request.Tags;
