@@ -1,5 +1,4 @@
 using Amazon.S3;
-using Clothesy.Application.Helpers;
 using Clothesy.Application.Persistence;
 using Clothesy.Application.Services;
 using Clothesy.Domain.Entities;

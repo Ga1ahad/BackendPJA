@@ -11,6 +11,7 @@ using Clothesy.Application.Services;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System;
+using Microsoft.Extensions.Configuration;
 
 namespace Clothesy.Api.Controllers
 {
@@ -19,12 +20,14 @@ namespace Clothesy.Api.Controllers
     [ApiController]
     public class ClothingController : Controller
     {
+        private readonly IConfiguration _config;
         private readonly ClothesyDbContext _context;
         private readonly IMediator _mediator;
-        public ClothingController(ClothesyDbContext context, IMediator mediator)
+        public ClothingController(ClothesyDbContext context, IMediator mediator, IConfiguration config)
         {
             _context = context;
             _mediator = mediator;
+            _config = config;
         }
 
         [HttpGet]
@@ -49,8 +52,11 @@ namespace Clothesy.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateClothings([FromForm] string name, [FromForm] int idClothingType, [FromForm] string tags, IFormFile image)
         {
+            var bucketName = _config.GetValue<string>("ServiceConfiguration:AWSS3:BucketName");
+            var secretKey = _config.GetValue<string>("ServiceConfiguration:AWSS3:AccessSecret");
+            var accessKey = _config.GetValue<string>("ServiceConfiguration:AWSS3:AccessKey");
 
-            var imageResponse = await AmazonS3Service.UploadObject(image);
+            var imageResponse = await AmazonS3Service.UploadObject(image, bucketName, secretKey, accessKey);
             var idUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
             CreateClothesCommand command = new CreateClothesCommand()
             {
@@ -58,14 +64,15 @@ namespace Clothesy.Api.Controllers
                 idUser = Int32.Parse(idUser),
                 Url = imageResponse.FileName,
                 idClothingType = idClothingType,
-                Tags = tags
+                Tags = tags,
+
             };
             var commandResult = await _mediator.Send(command);
             return Ok(commandResult);
         }
 
         [HttpPut("{idClothing:int}")]
-        public async Task<IActionResult> Update([FromForm] string name, [FromForm] int idClothingType, [FromForm] string tags, IFormFile image)
+        public async Task<IActionResult> Update([FromForm] string name, [FromForm] int idClothingType, [FromForm] string tags, IFormFile image, int idClothing)
         {
             var idUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
             UpdateClothesCommand command = new UpdateClothesCommand()
@@ -73,7 +80,8 @@ namespace Clothesy.Api.Controllers
                 Name = name,
                 idUser = Int32.Parse(idUser),
                 idClothingType = idClothingType,
-                Tags = tags
+                Tags = tags,
+                idClothing = idClothing
             };
             var commandResult = await _mediator.Send(command);
             return Ok(commandResult);
