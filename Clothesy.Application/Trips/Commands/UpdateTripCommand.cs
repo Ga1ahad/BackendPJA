@@ -18,12 +18,11 @@ namespace Clothesy.Application.Trips.Commands
         public string Country { get; set; }
         public string City { get; set; }
         public int ZipCode { get; set; }
-        public int idUser { get; set; }
 
-        public class CreateTripCommandHandler : IRequestHandler<UpdateTripCommand, int>
+        public class UpdateTripCommandHandler : IRequestHandler<UpdateTripCommand, int>
         {
             private readonly IClothesyDb _context;
-            public CreateTripCommandHandler(IClothesyDb context)
+            public UpdateTripCommandHandler(IClothesyDb context)
             {
                 _context = context;
             }
@@ -42,6 +41,7 @@ namespace Clothesy.Application.Trips.Commands
                     trip.StartTrip = request.StartTrip;
                     trip.EndTrip = request.EndTrip;
                     trip.City = request.City;
+                    trip.Country = request.Country;
                     trip.ZipCode = request.ZipCode;
                     await _context.SaveChangesAsync(cancellationToken);
                     return trip.idTrip;
