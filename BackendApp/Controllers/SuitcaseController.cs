@@ -7,11 +7,14 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Clothesy.Application.Clothes.Commands;
 using System.Threading.Tasks;
+using Clothesy.Application.Suitcases.Commands;
+using System.Text.Json;
+using System.Collections.Generic;
 
 namespace Clothesy.Api.Controllers
 {
-    [Authorize]
-    [Route("api/users/{idUser:int}/[controller]")]
+    //[Authorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class SuitcaseController : Controller
     {
@@ -33,30 +36,27 @@ namespace Clothesy.Api.Controllers
         // }
 
         [HttpGet("{idSuitcase:int}")]
-        public IActionResult GetSuitcases(int idUser, int id)
+        public async Task<IActionResult> GetSuitcases(int idSuitcase)
         {
-
-            var suitcase = _context.Suitcase.FirstOrDefault(s => s.idSuitcase == id);
-            if (suitcase == null)
-            {
-                return NotFound();
-            }
-            return Ok(suitcase);
+            var req = new GetClothesFromSuitcase { idSuitcase = idSuitcase };
+            var res = await _mediator.Send(req);
+            return Ok(res);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateCuitcase(CreateClothesCommand command)
+        [HttpPost("{idTrip:int}")]
+        public async Task<IActionResult> CreateCuitcase(int idTrip)
         {
             //var image = clh.Image;
 
             //     var imageResponse = await AmazonS3Service.UploadObject(image);
-            var userName = User.Identity.Name;
 
+            var command = new CreateSuitcaseCommand { idTrip = idTrip, };
+            var userName = User.Identity.Name;
             var commandResult = await _mediator.Send(command);
             return Ok(commandResult);
         }
 
-        [HttpPut("{idSuitcase:int}")]
+        /*[HttpPut("{idSuitcase:int}")]
         public IActionResult Update(int idSuitcase, Suitcase updatedSuitcase)
         {
 
@@ -69,7 +69,7 @@ namespace Clothesy.Api.Controllers
             _context.SaveChanges();
 
             return Ok(updatedSuitcase);
-        }
+        }*/
 
         [HttpDelete("{idSuitcase:int}")]
         public IActionResult Delete(int id)
@@ -84,7 +84,5 @@ namespace Clothesy.Api.Controllers
 
             return Ok(suitcase);
         }
-
-
     }
 }
