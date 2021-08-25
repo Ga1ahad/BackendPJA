@@ -10,21 +10,23 @@ using Clothesy.Domain.Entities;
 using System.Security.Claims;
 using System.Linq;
 using System;
+using Clothesy.WeatherApiService;
+using System.Collections.Generic;
 
 namespace Clothesy.Api.Controllers
 {
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    // [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class TripController : Controller
     {
         private readonly ClothesyDbContext _context;
-        private readonly IMediator _mediator;
+        private readonly IMediator _mediator;        
 
         public TripController(ClothesyDbContext context, IMediator mediator)
         {
             _context = context;
-            _mediator = mediator;
+            _mediator = mediator;            
         }
 
         [HttpGet]
@@ -40,7 +42,7 @@ namespace Clothesy.Api.Controllers
         [HttpGet("{idTrip:int}")]
         public async Task<IActionResult> GetTrip(int idUser, int idTrip)
         {
-            //       var user = await _userManager.GetUserAsync(User);
+            //var user = await _userManager.GetUserAsync(User);
             var req = new GetTripByIdFromUser { idUser = 11, idTrip = idTrip };
             var res = await _mediator.Send(req);
             return Ok(res);
@@ -71,7 +73,5 @@ namespace Clothesy.Api.Controllers
             var res = await _mediator.Send(req);
             return Ok(res);
         }
-
-
     }
 }
