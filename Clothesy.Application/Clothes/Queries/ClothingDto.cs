@@ -12,5 +12,6 @@ namespace Clothesy.Application.Clothes.Queries
         public int idClothingType { get; set; }
         public string Url { get; set; }
         public string Tags { get; internal set; }
+        public int[] x { get; internal set; }
     }
 }

@@ -26,6 +26,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Clothesy.Domain\Clothesy.Domain.csproj" />
 		<ProjectReference Include="..\Clothesy.Persistence\Clothesy.Persistence.csproj" />
+		<ProjectReference Include="..\Clothesy.WeatherApiService\Clothesy.WeatherApiService.csproj" />
 	</ItemGroup>
 
 
