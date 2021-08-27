@@ -36,10 +36,10 @@ namespace Clothesy.Api.Controllers
         //    return Ok(res);
         // }
 
-        [HttpGet("{idSuitcase:int}")]
-        public async Task<IActionResult> GetSuitcases(int idSuitcase)
+        [HttpGet("{idTrip:int}")]
+        public async Task<IActionResult> GetSuitcases(int idTrip)
         {
-            var req = new GetClothesFromSuitcase { idTrip = idSuitcase };
+            var req = new GetClothesFromSuitcase { idTrip = idTrip };
             var res = await _mediator.Send(req);
             return Ok(res);
         }
