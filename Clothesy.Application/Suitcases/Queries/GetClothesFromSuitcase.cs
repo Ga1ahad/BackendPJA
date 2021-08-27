@@ -15,7 +15,7 @@ namespace Clothesy.Application.Suitcases.Commands
     {
         public int idClothing { get; set; }
         public int idUser { get; set; }
-        public int idSuitcase { get; set; }
+        public int idTrip { get; set; }
 
 
         public class Handler : IRequestHandler<GetClothesFromSuitcase, List<ClothingDto>>
@@ -28,32 +28,35 @@ namespace Clothesy.Application.Suitcases.Commands
 
             public async Task<List<ClothingDto>> Handle(GetClothesFromSuitcase request, CancellationToken cancellationToken)
             {
-                var clothes = new List<IQueryable>();
-                var clothingSuitcaseData = _context.ClothingSuitcase.Where(s => s.idSuitcase == request.idSuitcase);
+                //    var clothes = new List<IQueryable>();
+                //    var clothingSuitcaseData = _context.ClothingSuitcase.Where(s => s.idSuitcase == request.idSuitcase);
 
-                foreach (var idClothingIterator in clothingSuitcaseData)
-                {
-                    clothes.Add(_context.Clothing.Where(c => c.idClothing == idClothingIterator.idClothing));
-                }
+                //    foreach (var idClothingIterator in clothingSuitcaseData)
+                //    {
+                //        clothes.Add(_context.Clothing.Where(c => c.idClothing == idClothingIterator.idClothing));
+                //    }
+                var suitcase = _context.Suitcase
+                .Where(b => b.idTrip == request.idTrip)
+                .FirstOrDefault();
 
                 List<ClothingDto> clothings = new List<ClothingDto>();
 
                 clothings = await _context.Clothing
-                               .Include(cs => cs.ClothingSuitcase.Where(cs => cs.idSuitcase == request.idSuitcase))                               
+                               .Include(cs => cs.ClothingSuitcase)
                                .Select(c => new ClothingDto
                                {
                                    idClothing = c.idClothing,
                                    Name = c.Name,
                                    Url = "https://clothesybucket.s3.eu-central-1.amazonaws.com/" + c.Url,
                                    ClothingTypeName = c.idClothingTypeNavigation.Name,
-                                   x = c.ClothingSuitcase.Select(o => o.idSuitcaseNavigation.idSuitcase).ToArray(),                                   
+                                   Suitcases = c.ClothingSuitcase.Select(o => o.idSuitcaseNavigation.idSuitcase).ToArray(),
                                }
                                )
-                               .Where(x => x.x.Contains(request.idSuitcase))
+                               .Where(x => x.Suitcases.Contains(suitcase.idSuitcase))
                                .ToListAsync(cancellationToken: cancellationToken);
-                
+
                 return clothings;
-            }            
+            }
         }
     }
 }

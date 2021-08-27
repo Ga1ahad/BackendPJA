@@ -17,7 +17,7 @@ namespace Clothesy.Application.Trips.Commands
         public DateTime EndTrip { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-        public int ZipCode { get; set; }
+        public bool SuitcaseGenerated { get; set; }
 
         public class UpdateTripCommandHandler : IRequestHandler<UpdateTripCommand, int>
         {
@@ -42,7 +42,7 @@ namespace Clothesy.Application.Trips.Commands
                     trip.EndTrip = request.EndTrip;
                     trip.City = request.City;
                     trip.Country = request.Country;
-                    trip.ZipCode = request.ZipCode;
+                    trip.SuitcaseGenerated = request.SuitcaseGenerated;
                     await _context.SaveChangesAsync(cancellationToken);
                     return trip.idTrip;
                 }

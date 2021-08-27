@@ -50,14 +50,14 @@ namespace Clothesy.ApiApp
             services.AddScoped<IClothesyDb, ClothesyDbContext>();
             services.AddDbContext<ClothesyDbContext>(opt =>
             {
-                opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15236;Integrated Security=True");
+                opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15264;Integrated Security=True");
             });
 
             //Configure Mediatr
             services.AddMediatR(typeof(IClothesyDb).Assembly);
 
             services.AddControllers();
-          
+
             var appSettingsSection = Configuration.GetSection("ServiceConfiguration");
             services.AddAWSService<IAmazonS3>();
             services.Configure<ServiceConfiguration>(appSettingsSection);
@@ -65,7 +65,7 @@ namespace Clothesy.ApiApp
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             });
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

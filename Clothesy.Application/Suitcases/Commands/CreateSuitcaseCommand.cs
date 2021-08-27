@@ -28,7 +28,7 @@ namespace Clothesy.Application.Suitcases.Commands
         {
             var trip = _context.Trip.FirstOrDefault(x => x.idTrip == request.idTrip);
             var generalClothes = _context.Clothing.Where(x => x.idUser == trip.idUser);
-
+            trip.SuitcaseGenerated = true;
             var suitcase = new Suitcase();
             suitcase.Name = "Walizka dla " + trip.TripName + " podrózy od " + trip.StartTrip.ToShortDateString() + " do " + trip.EndTrip.ToShortDateString();
             suitcase.idTrip = request.idTrip;

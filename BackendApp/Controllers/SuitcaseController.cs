@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Clothesy.Application.Suitcases.Commands;
 using System.Text.Json;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace Clothesy.Api.Controllers
 {
@@ -38,7 +39,7 @@ namespace Clothesy.Api.Controllers
         [HttpGet("{idSuitcase:int}")]
         public async Task<IActionResult> GetSuitcases(int idSuitcase)
         {
-            var req = new GetClothesFromSuitcase { idSuitcase = idSuitcase };
+            var req = new GetClothesFromSuitcase { idTrip = idSuitcase };
             var res = await _mediator.Send(req);
             return Ok(res);
         }

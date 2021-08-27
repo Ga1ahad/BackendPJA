@@ -15,18 +15,18 @@ using System.Collections.Generic;
 
 namespace Clothesy.Api.Controllers
 {
-    // [Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
     public class TripController : Controller
     {
         private readonly ClothesyDbContext _context;
-        private readonly IMediator _mediator;        
+        private readonly IMediator _mediator;
 
         public TripController(ClothesyDbContext context, IMediator mediator)
         {
             _context = context;
-            _mediator = mediator;            
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -42,8 +42,8 @@ namespace Clothesy.Api.Controllers
         [HttpGet("{idTrip:int}")]
         public async Task<IActionResult> GetTrip(int idUser, int idTrip)
         {
-            //var user = await _userManager.GetUserAsync(User);
-            var req = new GetTripByIdFromUser { idUser = 11, idTrip = idTrip };
+            var userName = User.Identity.Name;
+            var req = new GetTripByIdFromUser { idUser = Int16.Parse(userName), idTrip = idTrip };
             var res = await _mediator.Send(req);
             return Ok(res);
         }
