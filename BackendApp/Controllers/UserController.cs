@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Clothesy.Application.Trips.Commands;
 using System.Linq;
 
+
 namespace Clothesy.ApiApp.Controllers
 {
     [Authorize]
@@ -29,14 +30,14 @@ namespace Clothesy.ApiApp.Controllers
         {
             _configuration = configuration;
             _context = context;
-            _mediator = mediator;            
+            _mediator = mediator;
         }
 
         [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody] LoginRequestDto request)
-        {                       
+        {
             if (!ModelState.IsValid)
             {
                 return BadRequest();

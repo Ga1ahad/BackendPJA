@@ -16,7 +16,7 @@ namespace Clothesy.Domain.Entities
         public DateTime EndTrip { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
-        public int ZipCode { get; set; }
+        public bool SuitcaseGenerated { get; set; }
         public int idUser { get; set; }
         public virtual User idUserNavigation { get; set; }
 
