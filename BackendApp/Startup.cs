@@ -50,7 +50,9 @@ namespace Clothesy.ApiApp
             services.AddScoped<IClothesyDb, ClothesyDbContext>();
             services.AddDbContext<ClothesyDbContext>(opt =>
             {
-                opt.UseSqlServer("Data Source=db-mssql;Initial Catalog=s15264;Integrated Security=True");
+                var connectionString = Configuration.GetValue<string>("ConnectionStrings:Azure");
+                opt.UseSqlServer(connectionString);
+
             });
 
             //Configure Mediatr

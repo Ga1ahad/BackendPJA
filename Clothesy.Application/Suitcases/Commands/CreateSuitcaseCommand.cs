@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Clothesy.Application.Suitcases.Commands
 {
     public class CreateSuitcaseCommand : IRequest<int>
-    {        
+    {
         public int idTrip { get; set; }
     }
 
@@ -34,7 +34,7 @@ namespace Clothesy.Application.Suitcases.Commands
             suitcase.idTrip = request.idTrip;
 
             var random = new Random();
-            var weather = await _weather.LoadWeatherInformation(trip.City, trip.StartTrip.ToString(), trip.EndTrip.ToString());
+            var weather = await _weather.LoadWeatherInformation(trip.City, trip.StartTrip.ToString("dd.MM.yyyy HH:mm:ss"), trip.EndTrip.ToString("dd.MM.yyyy HH:mm:ss"));
 
 
             //pory roku
@@ -50,18 +50,18 @@ namespace Clothesy.Application.Suitcases.Commands
             var lightShoes = lightClothes.Where(x => x.idClothingTypeNavigation.Name == "buty").ToList();
 
             //zima
-            
+
             var winterHats = winterClothes.Where(x => x.idClothingTypeNavigation.Name == "czapka").ToList();
-            var winterJackets = winterClothes.Where(x => x.idClothingTypeNavigation.Name == "kurtka").ToList();            
+            var winterJackets = winterClothes.Where(x => x.idClothingTypeNavigation.Name == "kurtka").ToList();
             var winterShoes = winterClothes.Where(x => x.idClothingTypeNavigation.Name == "buty").ToList();
 
             //wiosna
-            
+
             var springJackets = springClothes.Where(x => x.idClothingTypeNavigation.Name == "kurtka").ToList();
 
             //lato
-            
-            var summerHats = summerClothes.Where(x => x.idClothingTypeNavigation.Name == "czapka").ToList();            
+
+            var summerHats = summerClothes.Where(x => x.idClothingTypeNavigation.Name == "czapka").ToList();
             var shorts = generalClothes.Where(x => x.idClothingTypeNavigation.Name == "spodenki").ToList();
 
 
@@ -186,7 +186,7 @@ namespace Clothesy.Application.Suitcases.Commands
             else
             {
                 throw new Exception("Nie ma wystarczająco ubrań w bazie danych");
-            }   
+            }
 
             _context.Suitcase.Add(suitcase);
             await _context.SaveChangesAsync(cancellationToken);
